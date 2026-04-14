@@ -1,22 +1,45 @@
 @import "tailwindcss";
 
+.heading-font-size{
+  
+}
+
 :root {
-  --background: #ffffff;
+  --background: hsl(240,95.3%,8.4%);
   --foreground: #171717;
+  --light-bg: #242440;
+  --light-blue:#4557DA;
+
+  --light:rgb(168 168 168);
+
+  --border-color:lab(33 9.53 -18.74);
+}
+html{
+  scrollbar-gutter: stable;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme inline{
+  --color-light-bg: #242440;
+  --color-light-blue:#4557DA;
+  --color-light:rgb(168 168 168);
+  --color-border-color:lab(33 9.53 -18.74);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-bricolage-grotesque);
+
+  --breakpoint-xs: 27rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base{
+  h1{
+    font-size: clamp(1rem, 13.9vw, 3.75rem); 
   }
+  h2{
+    font-size: clamp(0.5rem, 6.9vw, 1.875rem);
+  }
+  h3{
+    font-size: clamp(0.25rem, 4.6vw, 1.25rem); 
+  }
+  
 }
 
 body {
@@ -24,3 +47,4 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
