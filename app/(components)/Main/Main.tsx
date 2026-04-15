@@ -1,23 +1,22 @@
+import Image from "next/image";
+
 import DailyForecast from "./Components/DailyForecast";
 import ForecastCard from "./Components/ForecastCard";
 import HourlyForecast from "./Components/HourlyForecast";
 import InfoCard from "./Components/InfoCard";
-import SearchBar from "./Components/SearchBar";
+// import SearchBar from "./Components/SearchBar";
 import TempDisplay from "./Components/TempDisplay";
 
+import SearchLogo from "@/public/images/icon-search.svg"
+import Search from "./Components/Search";
 
 export default function Main() {
 
 
     return(
-        <main className="flex flex-col =bg-red-600 gap-6 max-w-96 pb-14 self-center">
+        <main className="flex flex-col self-center items-center  gap-6  pb-14 w-full =md:w-full =md:max-w-full">
             <h1 className="py-12 font-mono font-bold text-center leading-[1.1]">How's the sky looking today?</h1>
-            <div className="flex flex-col gap-3">
-                <SearchBar/>
-                <button className="w-full h-14 rounded-xl bg-light-blue">
-                    Search
-                </button>
-            </div>
+            <Search/>
             <TempDisplay/>
             <div className="grid grid-rows-2 grid-cols-2 gap-4">
                 <InfoCard label="Feels Like" value="18°"/>
