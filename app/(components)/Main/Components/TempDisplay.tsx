@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default function TempDisplay(){
 
     return(
-        <div className="flex relative">
+        <div className="flex relative min-w-85.75">
             <Image src={TempBg} alt={"temp"} className='md:hidden w-full -z-50'/>
             <Image  src={TempBgLarge} alt={"temp"} className='md:block hidden  min-h-72 -z-50'/>
             <div className='flex flex-col items-center gap-3 absolute h-full w-full px-8 py-10'>
