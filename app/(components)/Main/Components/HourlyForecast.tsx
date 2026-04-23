@@ -9,7 +9,7 @@ import RainIcon from "@/public/images/icon-rain.webp"
 function DayDropdown(){
     
     return (
-        <div className="relative flex gap-2 h-10 py-2 px-4 bg-white/10 rounded-md">
+        <div className="relative flex gap-2 h-10 py-2 px-4 bg-white/10 hover:bg-white/20 rounded-md">
             <p>Tuesday</p>
             <Image src={DropdownIcon} alt="Drop"/>
             <button className="absolute w-full h-full top-0 left-0" onClick={() => console.log("hello")}/>
@@ -36,7 +36,7 @@ export default function HourlyForecast(){
                 <h3 className="mr-auto">Hourly Forecast</h3>
                 <DayDropdown/>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col justify-around min-h-146.5">
                 <HourInfoCard/>
                 <HourInfoCard/>
                 <HourInfoCard/>

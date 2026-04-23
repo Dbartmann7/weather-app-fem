@@ -19,7 +19,7 @@ function UnitsBtn(){
 
 export default function PageHeader(){
     return(
-        <header className="h-9 flex items-center">
+        <header className="h-9 flex items-center w-full">
             <Image src={Logo} alt={"Logo"} className="mr-auto w-auto shrink min-w-0 max-h-full"/>
             <UnitsBtn/>
         </header>

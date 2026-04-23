@@ -9,15 +9,17 @@ import TempDisplay from "./Components/TempDisplay";
 
 import SearchLogo from "@/public/images/icon-search.svg"
 import Search from "./Components/Search";
+import PageHeader from "./Components/PageHeader";
 
 export default function Main() {
 
 
     return(
-        <main className="flex flex-col self-center items-center  gap-6  pb-14 w-full max-w-85.75 sm:max-w-200">
+        <main className="flex flex-col self-center items-center  gap-6  pb-14 w-full max-w-85.75 sm:max-w-200 xl:max-w-300">
+            <PageHeader/>
             <h1 className="py-12 font-mono font-bold text-center leading-[1.1]">How's the sky looking today?</h1>
             <Search/>
-            <div className="flex flex-col w-full gap-8">
+            <div className="flex flex-col xl:flex-row w-full gap-8">
                 <div className="flex flex-col gap-8 w-full">
                     <div className="flex flex-col sm:flex-row md:flex-col gap-4">
                         <TempDisplay/>
