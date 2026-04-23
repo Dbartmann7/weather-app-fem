@@ -31,7 +31,7 @@ function HourInfoCard(){
 export default function HourlyForecast(){
 
     return(
-        <div className="w-full h-fit p-3 bg-light-bg rounded-2xl border border-border-color">
+        <div className="w-full max-w-200 h-fit p-3 bg-light-bg rounded-2xl border border-border-color">
             <div className="flex flex-row items-center pb-4">
                 <h3 className="mr-auto">Hourly Forecast</h3>
                 <DayDropdown/>

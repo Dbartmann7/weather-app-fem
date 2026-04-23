@@ -6,7 +6,7 @@ export default function DailyForecast(){
     return(
         <div>
             <h3 className="font-semibold mb-3">Daily forecast</h3>
-            <div className="grid grid-rows-3 grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 sm:flex gap-4 w-full">
                 <ForecastCard/>
                 <ForecastCard/>
                 <ForecastCard/>
