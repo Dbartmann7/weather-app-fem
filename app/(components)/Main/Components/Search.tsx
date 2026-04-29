@@ -6,7 +6,7 @@ function SearchBar(){
 
     return(
         <div className="flex bg-light-bg rounded-xl w-full h-12 px-6 ">
-            <Image src={SearchIcon} alt="search"/>
+            <Image src={SearchIcon} alt="search" className="w-6"/>
             <input
                 className="w-full px-4 focus-visible:outline-0"
                 placeholder="Search for a place..."
