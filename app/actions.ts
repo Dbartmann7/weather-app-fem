@@ -2,9 +2,12 @@ import { fetchWeatherApi } from "openmeteo"
 
 export const getLocationsData = async (location:string) => {
 
-    let data = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`)
-    console.log(await data.json())
-}
+    let res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`)
+    let data = await res.json()
+
+    
+    return data.results || []
+}   
 
 export const getWeather = async (lat:number, long:number) => {
     const params = {
