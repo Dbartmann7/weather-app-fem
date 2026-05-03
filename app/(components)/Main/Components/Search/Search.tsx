@@ -2,18 +2,35 @@
 import Image from "next/image"
 
 import SearchIcon from "@/public/images/icon-search.svg"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import { useRouter } from "next/navigation"
 import { getLocationsData } from "@/app/actions"
-import { InputEvent } from "react"
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
 
-// TODO: implement search dropdown to display locations
+
+function SearchDropdown(){
+    let names = ["Berlin", "London", "Livingston"]
+
+    return(
+        <div className="absolute flex flex-col bg-light-bg rounded-xl w-full h-fit left-0 top-13 z-50">
+            <div className="my-2 px-2">
+            {
+                names.map((location) => {
+                    return(
+                        <div className="flex w-full h-10 hover:bg-white/10 rounded-md">
+                            <p className="my-auto px-2">{location}</p>
+                        </div>
+                    )
+                })
+            }
+            </div>
+        </div>
+    )
+}
 
 function SearchBar({value, setValue, submitLocation}:{value:string, setValue:Dispatch<SetStateAction<string>>, submitLocation:() => void}){
 
     return(
-        <div className="flex bg-light-bg rounded-xl w-full h-12 px-6 ">
+        <div className="flex bg-light-bg rounded-xl w-full h-12 px-6 relative">
             <Image src={SearchIcon} alt="search" className="w-6"/>
             <input
                 type="query"
@@ -23,6 +40,7 @@ function SearchBar({value, setValue, submitLocation}:{value:string, setValue:Dis
                 onInput={(e) => setValue(e.currentTarget.value)}
                 onKeyDown={(e) => {if(e.key === 'Enter') submitLocation()}}
             />
+            <SearchDropdown/>
         </div>
     )
 }
