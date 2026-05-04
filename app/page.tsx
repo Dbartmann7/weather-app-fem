@@ -1,13 +1,23 @@
 import Main from "./(components)/Main/Main";
-import PageHeader from "./(components)/Main/Components/PageHeader"
-import { getLocationsData, getWeather } from "./actions";
 
-export default async function Page() {
+import { getWeatherData } from "./util/getWeatherData";
+import { WeatherData } from "./util/types";
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: { lat?: number; long?: number };
+}) {
+  let {lat, long} = await searchParams
+  let weatherData: WeatherData | null = null;
   
-
+  if(lat && long){
+    weatherData = await getWeatherData(lat, long) 
+  }
+  
+   
   return (
     <div className="w-screen h-screen p-5 flex flex-col text-white">
-      <Main/>
+      <Main weatherData={weatherData}/>
     </div>
   );
 }

@@ -10,9 +10,10 @@ import TempDisplay from "./Components/Weather/TempDisplay";
 import Search from "./Components/Search/Search";
 import PageHeader from "./Components/PageHeader";
 import Weather from "./Components/Weather/Weather";
+import { WeatherData } from "@/app/util/types";
 
 
-export default function Main() {
+export default async function Main({weatherData}:{weatherData:WeatherData | null}) {
 
     
      
@@ -21,7 +22,7 @@ export default function Main() {
             <PageHeader/>
             <h1 className="py-12 font-mono font-bold text-center leading-[1.1]">How's the sky looking today?</h1>
             <Search/>
-            <Weather/>
+            <Weather data={weatherData}/>
         </main>
     )
 }

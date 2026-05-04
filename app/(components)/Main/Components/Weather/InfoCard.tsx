@@ -1,6 +1,6 @@
 type InfoCardProps = {
     label:string,
-    value: string,
+    value: string | null,
     className?:string
 }
 

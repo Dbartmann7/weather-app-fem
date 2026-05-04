@@ -1,3 +1,4 @@
+import { WeatherData } from "@/app/util/types";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
 import InfoCard from "./InfoCard";
@@ -8,7 +9,7 @@ import TempDisplay from "./TempDisplay";
 
 
 
-export default function Weather(){
+export default function Weather({data}:{data:WeatherData}){
     
 
     return(
@@ -17,15 +18,15 @@ export default function Weather(){
                 <div className="flex flex-col sm:flex-row md:flex-col gap-4">
                     <TempDisplay/>
                     <div className="grid grid-cols-2 gap-4 w-full md:flex md:flex-row">
-                        <InfoCard label="Feels Like" value="18°"/>
-                        <InfoCard label="Humidity" value="46%"/>
-                        <InfoCard label="Wind" value="14 km/h"/>
-                        <InfoCard label="Precipitation" value="0 mm"/>
+                        <InfoCard label="Feels Like" value={Math.round(data?.current.apparent_temperature) + "°"}/>
+                        <InfoCard label="Humidity" value={Math.round(data?.current.relative_humidity_2m) + "%"}/>
+                        <InfoCard label="Wind" value={Math.round(data?.current.wind_speed_10m) + " km/h"}/>
+                        <InfoCard label="Precipitation" value={data?.current.precipitation + " mm"}/>
                     </div>
                 </div>
-                <DailyForecast/>
+                <DailyForecast data={data?.daily}/>
             </div>
-            <HourlyForecast/>
+            <HourlyForecast data={data?.hourly}/>
         </div>
     )
 }

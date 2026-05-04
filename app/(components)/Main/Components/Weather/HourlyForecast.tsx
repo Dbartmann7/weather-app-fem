@@ -4,6 +4,7 @@ import Image from "next/image"
 
 import DropdownIcon from "@/public/images/icon-dropdown.svg"
 import RainIcon from "@/public/images/icon-rain.webp"
+import { HourlyWeatherData } from "@/app/util/types"
 
 
 function DayDropdown(){
@@ -17,18 +18,18 @@ function DayDropdown(){
     )
 }
 
-function HourInfoCard(){
+function HourInfoCard({data}:{data:HourlyWeatherData}){
 
     return(
         <div className="flex w-full gap-2 h-14 py-2 px-4 items-center bg-white/5 rounded-md border border-border-color">
             <Image className="max-h-full w-auto" src={RainIcon} alt={"Rain"}/>
             <p className="mr-auto">3 PM</p>
-            <p>20</p>
+            <p>{Math.floor(data.temp)}</p>
         </div>
     )
 }
 
-export default function HourlyForecast(){
+export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
 
     return(
         <div className="w-full max-w-200 h-fit p-3 bg-light-bg rounded-2xl border border-border-color">
@@ -37,14 +38,12 @@ export default function HourlyForecast(){
                 <DayDropdown/>
             </div>
             <div className="flex flex-col justify-around min-h-146.5">
-                <HourInfoCard/>
-                <HourInfoCard/>
-                <HourInfoCard/>
-                <HourInfoCard/>
-                <HourInfoCard/>
-                <HourInfoCard/>
-                <HourInfoCard/>
-                <HourInfoCard/>
+                {
+                    data.slice(0,8).map((hour) => {
+
+                        return <HourInfoCard data={hour}/>
+                    })
+                }
             </div>
         </div>
     )
