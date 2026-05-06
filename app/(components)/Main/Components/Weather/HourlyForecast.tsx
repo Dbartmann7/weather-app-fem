@@ -24,7 +24,7 @@ function HourInfoCard({data}:{data:HourlyWeatherData}){
         <div className="flex w-full gap-2 h-14 py-2 px-4 items-center bg-white/5 rounded-md border border-border-color">
             <Image className="max-h-full w-auto" src={RainIcon} alt={"Rain"}/>
             <p className="mr-auto">3 PM</p>
-            <p>{Math.floor(data.temp)}</p>
+            <p>{data.temp}</p>
         </div>
     )
 }
@@ -39,7 +39,7 @@ export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
             </div>
             <div className="flex flex-col justify-around min-h-146.5">
                 {
-                    data.slice(0,8).map((hour) => {
+                    data?.slice(0,8).map((hour) => {
 
                         return <HourInfoCard data={hour}/>
                     })

@@ -16,8 +16,8 @@ export default function ForecastCard({dayData}:ForecastCardProps){
             <h3>{dayData.day}</h3>
             <Image className="w-2/3" src={RainIcon} alt={"Rain"}/>
             <div className="flex flex-row justify-between w-full">
-                <p>{Math.round(dayData.tempMax)}</p>
-                <p>{Math.round(dayData.tempMin)}</p>
+                <p>{dayData.tempMax}</p>
+                <p>{dayData.tempMin}</p>
             </div>
         </div>
     )

@@ -15,8 +15,8 @@ const convertDayObjToArr: (data:any, utcOffsetSeconds:number) => DailyWeatherDat
         result.push(
             {
                 day: days[((new Date((Number(data.time()) + data.interval() + utcOffsetSeconds) * 1000)).getDay() +i - 1) % 7],
-                tempMax: tempMax[i],
-                tempMin: tempMin[i],
+                tempMax: Math.floor(tempMax[i]),
+                tempMin: Math.floor(tempMin[i]),
                 weatherCode: weatherCode[i]
             }
         )
@@ -34,7 +34,7 @@ const convertHourObjToArr: (data:any, utcOffsetSeconds:number) => HourlyWeatherD
         result.push(
             {
                 time: new Date((Number(data.time()) + i * data.interval() + utcOffsetSeconds) * 1000),
-                temp: temp[i],
+                temp: Math.round(temp[i]),
                 weatherCode: weatherCode[i]
             }
         )
@@ -84,11 +84,11 @@ export const getWeatherData: (lat:number, long:number) => Promise<WeatherData> =
     const weatherData = {
         current: {
             time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
-            temperature_2m: current.variables(0)!.value(),
-            relative_humidity_2m: current.variables(1)!.value(),
-            apparent_temperature: current.variables(2)!.value(),
-            precipitation: current.variables(3)!.value(),
-            wind_speed_10m: current.variables(4)!.value(),
+            temperature_2m: Math.floor(current.variables(0)!.value()),
+            relative_humidity_2m: Math.floor(current.variables(1)!.value()),
+            apparent_temperature: Math.floor(current.variables(2)!.value()),
+            precipitation: Math.floor(current.variables(3)!.value()),
+            wind_speed_10m: Math.floor(current.variables(4)!.value()),
             weather_code: current.variables(5)!.value(),
         },
         hourly: hourArr,
