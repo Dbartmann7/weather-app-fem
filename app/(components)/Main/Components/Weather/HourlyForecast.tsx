@@ -32,7 +32,7 @@ function HourInfoCard({data}:{data:HourlyWeatherData}){
 export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
 
     return(
-        <div className="w-full max-w-200 h-fit p-3 bg-light-bg rounded-2xl border border-border-color">
+        <div className="w-full max-w-200 xl:max-w-93 h-fit p-3 bg-light-bg rounded-2xl border border-border-color">
             <div className="flex flex-row items-center pb-4">
                 <h3 className="mr-auto">Hourly Forecast</h3>
                 <DayDropdown/>

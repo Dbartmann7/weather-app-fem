@@ -1,3 +1,4 @@
+
 import Main from "./(components)/Main/Main";
 
 import { getWeatherData } from "./util/getWeatherData";
@@ -10,8 +11,15 @@ export default async function Page({
   let {lat, long} = await searchParams
   let weatherData: WeatherData | null = null;
   
+  // show Edinbugh weather if no lat or log is set
+  if(!lat || !long){
+    lat = 55.9520
+    long = -3.19648
+  }
   if(lat && long){
     weatherData = await getWeatherData(lat, long) 
+  }else{
+    
   }
   
    
