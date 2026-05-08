@@ -50,7 +50,8 @@ export default function Search(){
         let params = new URLSearchParams()
         params.set("lat", locationData.latitude)
         params.set("long", locationData.longitude)
-
+        params.set("name", locationData.name)
+        params.set("country", locationData.country)
         router.push(`?${params.toString()}`)
     }
 

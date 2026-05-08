@@ -16,7 +16,7 @@ export default function Weather({data}:{data:WeatherData}){
         <div className="flex flex-col xl:flex-row w-full gap-8">
             <div className="flex flex-col gap-8 w-full">
                 <div className="flex flex-col sm:flex-row md:flex-col gap-4">
-                    <TempDisplay/>
+                    <TempDisplay data={data.current}/>
                     <div className="grid grid-cols-2 gap-4 w-full md:flex md:flex-row">
                         <InfoCard label="Feels Like" value={Math.round(data?.current.apparent_temperature) + "°"}/>
                         <InfoCard label="Humidity" value={Math.round(data?.current.relative_humidity_2m) + "%"}/>

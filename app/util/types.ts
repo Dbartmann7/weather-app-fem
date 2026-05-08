@@ -12,6 +12,8 @@ export type CurrentWeatherData = {
   precipitation: number
   wind_speed_10m: number
   weather_code: number
+  name:string
+  country:string
 }
 
 export type HourlyWeatherData = {

@@ -6,21 +6,21 @@ import { WeatherData } from "./util/types";
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { lat?: number; long?: number };
+  searchParams: { lat?: number; long?: number; name?:string; country?:string };
 }) {
-  let {lat, long} = await searchParams
+  let {lat, long, name, country} = await searchParams
   let weatherData: WeatherData | null = null;
   
   // show Edinbugh weather if no lat or log is set
-  if(!lat || !long){
+  if(!lat || !long || !name || !country){
     lat = 55.9520
     long = -3.19648
+    name = "Edinburgh"
+    country = "United Kingdom"
   }
-  if(lat && long){
-    weatherData = await getWeatherData(lat, long) 
-  }else{
-    
-  }
+ 
+  weatherData = await getWeatherData(lat, long, name, country) 
+  
   
    
   return (

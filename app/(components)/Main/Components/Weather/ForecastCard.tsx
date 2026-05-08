@@ -13,7 +13,7 @@ export default function ForecastCard({dayData}:ForecastCardProps){
 
     return(
         <div className="flex flex-col justify-around px-3 py-3 bg-light-bg border border-border-color rounded-xl items-center w-25 aspect-2/3">
-            <h3>{dayData.day}</h3>
+            <h3>{dayData.day.substring(0, 3)}</h3>
             <Image className="w-2/3" src={RainIcon} alt={"Rain"}/>
             <div className="flex flex-row justify-between w-full">
                 <p>{dayData.tempMax}</p>
