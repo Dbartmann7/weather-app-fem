@@ -24,7 +24,7 @@ export type HourlyWeatherData = {
 
 
 export type DailyWeatherData = {
-  day:string
+  time:Date
   weatherCode: number
   tempMax: number
   tempMin: number

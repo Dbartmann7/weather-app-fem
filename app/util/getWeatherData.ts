@@ -14,7 +14,7 @@ const convertDayObjToArr: (data:any, utcOffsetSeconds:number) => DailyWeatherDat
     for(let i=0; i<tempMax.length; i++){
         result.push(
             {
-                day: days[((new Date((Number(data.time()) + data.interval() + utcOffsetSeconds) * 1000)).getDay() +i - 1) % 7],
+                time: new Date((Number(data.time()) + i * data.interval() + utcOffsetSeconds) * 1000),
                 tempMax: Math.floor(tempMax[i]),
                 tempMin: Math.floor(tempMin[i]),
                 weatherCode: weatherCode[i]
@@ -34,7 +34,7 @@ const convertHourObjToArr: (data:any, utcOffsetSeconds:number) => HourlyWeatherD
         result.push(
             {
                 time: new Date((Number(data.time()) + i * data.interval() + utcOffsetSeconds) * 1000),
-                temp: Math.round(temp[i]),
+                temp: Math.floor(temp[i]),
                 weatherCode: weatherCode[i]
             }
         )
@@ -53,6 +53,7 @@ export const getWeatherData: (lat:number, long:number, name:string, country:stri
         current: ["temperature_2m", "relative_humidity_2m", "apparent_temperature", "precipitation", "wind_speed_10m", "weather_code"],
         past_days: 0,
         forecast_days: 7,
+        timezone: "auto",
     };
     const url = "https://api.open-meteo.com/v1/forecast";
     const responses = await fetchWeatherApi(url, params);
@@ -105,7 +106,7 @@ export const getWeatherData: (lat:number, long:number, name:string, country:stri
     //     `\nCurrent wind_speed_10m: ${weatherData.current.wind_speed_10m}`,
     //     `\nCurrent weather_code: ${weatherData.current.weather_code}`,
     // );
-    // console.log("\nHourly data:\n", weatherData.hourly)
+    console.log("\nHourly data:\n", weatherData.hourly)
     // console.log("\nDaily data:\n", weatherData.daily)
     cacheLife({revalidate:900})
     return weatherData

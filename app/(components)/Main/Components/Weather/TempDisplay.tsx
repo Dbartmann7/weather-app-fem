@@ -3,6 +3,7 @@ import TempBgLarge from "@/public/images/bg-today-large.svg"
 import SunnyIcon from '@/public/images/icon-sunny.webp'
 import Image from 'next/image'
 import { CurrentWeatherData } from '@/app/util/types'
+import { dateToString } from '@/app/util/DateConversions'
 
 
 type TempDisplayProps = {
@@ -11,7 +12,7 @@ type TempDisplayProps = {
 
 export default function TempDisplay({data}:TempDisplayProps){
 
-
+    
 
 
     return(
@@ -21,7 +22,7 @@ export default function TempDisplay({data}:TempDisplayProps){
             <div className='flex flex-col md:flex-row justify-between items-center absolute h-full w-full px-8 py-10'>
                 <div className='min-w-69.75 flex flex-col items-center md:items-baseline'>
                     <h2 className='font-sans font-bold text-[1.75rem]'>{`${data.name}, ${data.country}`}</h2>
-                    <h3 className='font-sans text-gray-400 text-lg'>Tuesday, Aug 5, 2025</h3>
+                    <h3 className='font-sans text-gray-400 text-lg'>{dateToString(data.time)}</h3>
                 </div>
                 <div className='flex relative items-center justify-between w-fit h-1/2 '>
                     <Image src={SunnyIcon} alt={"Sunny"} className='w-3/7'/>
