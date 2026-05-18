@@ -11,10 +11,26 @@ export const dateToMonth = (date:Date) => {
 
 }
 
-export const dateToDay = (date:Date) => {
+export const dateToDay = (date:Date | number) => {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-  
-    return days[date.getDay()]
+    if(date instanceof Date){
+        date = date.getDay()
+    }
+    return days[date]
+}
+
+export const getDayNum = (day:string) => {
+    const map = new Map<string, number>([
+        ["Sunday", 0],
+        ["Monday", 1],
+        ["Tuesday", 2],
+        ["Wednesday", 3],
+        ["Thursday", 4],
+        ["Friday", 5],
+        ["Saturday", 6]
+    ])
+
+    return map.get(day) ?? -1
 }
 
 export const dateToHour = (date:Date) => {
