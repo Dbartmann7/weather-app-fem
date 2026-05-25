@@ -1,14 +1,7 @@
-import Image from "next/image";
 
-import DailyForecast from "./Components/Weather/DailyForecast";
-import ForecastCard from "./Components/Weather/ForecastCard";
-import HourlyForecast from "./Components/Weather/HourlyForecast";
-import InfoCard from "./Components/Weather/InfoCard";
-
-import TempDisplay from "./Components/Weather/TempDisplay";
-
+import PageHeader from "./Components/PageHeader/PageHeader";
 import Search from "./Components/Search/Search";
-import PageHeader from "./Components/PageHeader";
+
 import Weather from "./Components/Weather/Weather";
 import { WeatherData } from "@/app/util/types";
 
