@@ -28,7 +28,7 @@ export const DropdownMenu = ({options, onSelect, className, ref}: DropDownMenuPr
                         return <Option data={option} onSelect={onSelect}/> 
                     }
                     if(option.type === "section"){
-                        return <OptionSection data={option}/>
+                        return <OptionSection data={option} onSelect={onSelect}/>
                     }
                     
                 })

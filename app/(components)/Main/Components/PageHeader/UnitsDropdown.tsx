@@ -77,7 +77,7 @@ export function UnitsDropdown(){
 
     return(
         <>
-            <Dropdown logo={UnitsIcon} title="Units" options={newOptions} submitFn={submitFn}/>
+            <Dropdown logo={UnitsIcon} title="Units" options={newOptions} submitFn={submitFn} closeAfterSelect={true}/>
         </>
     )
 }

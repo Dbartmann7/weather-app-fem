@@ -47,7 +47,7 @@ export function Dropdown({title, logo, options=[], closeAfterSelect}: DropdownPr
         if(closeAfterSelect) setIsMenuVisible(false)
         if(option.onSelect) option.onSelect(option)
     }
-
+    
     return (
         <div className="relative">
             <div className="relative flex w-fit gap-2 h-10 py-2 px-4 bg-white/10 hover:bg-white/20 rounded-md" onClick={toggleDropdown}>
