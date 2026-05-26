@@ -29,3 +29,11 @@ export type DailyWeatherData = {
   tempMax: number
   tempMin: number
 }
+
+
+export type OptionType = {
+  type: "option" | "section"
+  label:string
+  onSelect?: (...args:any[]) => void
+  options?:OptionType[]
+}

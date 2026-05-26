@@ -3,7 +3,7 @@
 import Image from "next/image"
 
 import RainIcon from "@/public/images/icon-rain.webp"
-import { HourlyWeatherData } from "@/app/util/types"
+import { HourlyWeatherData, OptionType } from "@/app/util/types"
 import { dateToDay, dateToHour, getDayNum } from "@/app/util/DateConversions"
 import {  RefObject,  useEffect, useState } from "react"
 import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
@@ -32,14 +32,43 @@ export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
     const [selectedDay, setSelectedDay] = useState<number>(currentDay)
 
     const [dayOffset, setDayOffset] = useState<number>(0)
-    
-    const options = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    // close search results if user clicks outside
-   
-    const handleSelect = (option:string) => {
+
+    const handleSelect = (option:OptionType) => {
       
-        setSelectedDay(getDayNum(option))
+        setSelectedDay(getDayNum(option.label))
     }
+    const newOptions:OptionType[] = [
+        {
+            type:"option",
+            label:"Monday",
+            onSelect:handleSelect
+        }, 
+        {
+            type:"option",
+            label:"Tuesday",
+            onSelect:handleSelect
+        }, {
+            type:"option",
+            label:"Wednesday",
+            onSelect:handleSelect
+        }, {
+            type:"option",
+            label:"Thursday",
+            onSelect:handleSelect
+        }, {
+            type:"option",
+            label:"Friday",
+            onSelect:handleSelect
+        }, {
+            type:"option",
+            label:"Saturday",
+            onSelect:handleSelect
+        }, {
+            type:"option",
+            label:"Sunday",
+            onSelect:handleSelect
+        }, 
+    ] 
     
     useEffect(() => {
         if(currentDay > selectedDay){
@@ -53,7 +82,7 @@ export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
         <div className="flex flex-col w-full max-w-200 xl:max-w-93 p-6 max-h-167 bg-light-bg rounded-2xl border border-border-color relative ">
             <div className="flex flex-row items-center pb-4">
                 <h3 className="mr-auto">Hourly Forecast</h3>
-                <Dropdown title={dateToDay(selectedDay)} options={options} submitFn={handleSelect} closeAfterSelect={true}/>
+                <Dropdown title={dateToDay(selectedDay)} options={newOptions} submitFn={handleSelect} closeAfterSelect={true}/>
             </div>
             <div className="flex flex-col  gap-4 overflow-y-scroll h-full">
                 {

@@ -5,31 +5,23 @@ import { RefObject, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import DropdownIcon from "@/public/images/icon-dropdown.svg"
 import { DropdownMenu } from "./DropdownMenu"
+import { OptionType } from "../../types"
 
 type DropdownProps = {
     title:string
     logo?: string
-    options: string[]
+    options: OptionType[]
     submitFn: (...args: any[]) => any 
     closeAfterSelect?: boolean
 
 }
 
 
-export function Dropdown({title, logo, options=[], submitFn, closeAfterSelect}: DropdownProps){
+export function Dropdown({title, logo, options=[], closeAfterSelect}: DropdownProps){
     
-   
-    const [iconClass, setIconClass] = useState<string>("")
-
     let [isMenuVisible, setIsMenuVisible] = useState<boolean>(false)
     let menuRef = useRef<HTMLDivElement | null>(null)
-    
-    useEffect(() => {
-        setIconClass(() => {
-            return isMenuVisible ? 'rotate-180' : ""
-        })
-        
-    }, [isMenuVisible])
+
 
     useEffect(() => {
         const handleClickOutside = (e:MouseEvent) => {
@@ -51,9 +43,9 @@ export function Dropdown({title, logo, options=[], submitFn, closeAfterSelect}: 
         })
     }
 
-    const newSubmitFn = (option:string) =>{
+    const newSubmitFn = (option:OptionType) =>{
         if(closeAfterSelect) setIsMenuVisible(false)
-        submitFn(option)
+        if(option.onSelect) option.onSelect(option)
     }
 
     return (
@@ -61,10 +53,10 @@ export function Dropdown({title, logo, options=[], submitFn, closeAfterSelect}: 
             <div className="relative flex w-fit gap-2 h-10 py-2 px-4 bg-white/10 hover:bg-white/20 rounded-md" onClick={toggleDropdown}>
                 {logo ? <Image src={logo} alt={"logo"}/> : null}
                 <p>{title}</p>
-                <Image src={DropdownIcon} alt="Drop" className={iconClass}/>
+                <Image src={DropdownIcon} alt="Drop" className={isMenuVisible ? 'rotate-180' : ""}/>
             </div>
             {
-                isMenuVisible ? <DropdownMenu ref={menuRef} options={options} submitFn={newSubmitFn} className="border border-border-color w-52 right-0 top-12"/>
+                isMenuVisible ? <DropdownMenu ref={menuRef} options={options} onSelect={newSubmitFn} className="border border-border-color w-52 right-0 top-12"/>
                 :
                 null
 

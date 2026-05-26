@@ -1,15 +1,21 @@
+import Image from "next/image"
+import { OptionType } from "../../types"
 
+import tick from "@/public/images/icon-checkmark.svg"
 
 type OptionProps = {
-    value:string
-    submitFn:(...args:any[]) => any
+    data:OptionType,
+    onSelect:(...args:any[]) => void
 }
 
-export const Option = ({value, submitFn}:OptionProps) => {
+export const Option = ({data, onSelect}:OptionProps) => {
 
     return(
-        <div className="flex w-full h-10 hover:bg-white/10 rounded-md" onClick={() => submitFn(value)}>
-            <p className="my-auto px-2">{value}</p>
+        <div className="flex w-full h-10 hover:bg-white/10 rounded-md pr-2" onClick={() => onSelect(data)}>
+            <p className="my-auto px-2">{
+               data.label
+            }</p>
+            {/* {isSelected ? <Image className="ml-auto" src={tick} alt={"tick"}/> : null}  */}
         </div>
     )
 }

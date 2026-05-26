@@ -1,13 +1,8 @@
 'use client'
 import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
+import { OptionType} from "@/app/util/types"
 import UnitsIcon from "@/public/images/icon-units.svg"
 
-
-type OptionType = {
-    name:string
-    options:string[]
-    selected:number
-} 
 
 export function UnitsDropdown(){
     const options = ["Switch to Imperial", 
@@ -23,33 +18,57 @@ export function UnitsDropdown(){
                         ] 
 
 
-    const newOptions = [
-        "Switch to Imperial",
+    const newOptions: OptionType[] = [
         {
-            name:"Temperature",
-            options: [
-                "Celsius (°C)", 
-                "Fahrenheit (°F)",
-            ],
-            selected:0
+            label:"Switch to Imperial",
+            type:"option",
+            onSelect:() => {}
         },
         {
-            name:"Wind Speed",
-            options: [
-                "km/h", 
-                "mph",
-            ],
-            selected:0
+            label:"Temperature",
+            type:"section",
+            onSelect:() => {},
+            options:[
+                {
+                    label:"Celsius (°C)",
+                    type:"option"
+                },
+                {
+                    label:"Fahrenheit (°F)",
+                    type:"option"
+                }
+            ]
         },
         {
-            name:"Precipitation",
-            options: [
-                "Millimeters (mm)", 
-                "Inches (in)",
-            ],
-            selected:0
-        }
-        
+            label:"Wind Speed",
+            type:"section",
+            onSelect:() => {},
+            options:[
+                {
+                    label:"km/h",
+                    type:"option"
+                },
+                {
+                    label:"mph",
+                    type:"option"
+                }
+            ]
+        },
+        {
+            label:"Precipitation",
+            type:"section",
+            onSelect:() => {},
+            options:[
+                {
+                    label:"Millimeters (mm)",
+                    type:"option"
+                },
+                {
+                    label:"Inches (in)",
+                    type:"option"
+                }
+            ]
+        },
     ]
 
     const submitFn = (option:string) => {
@@ -58,7 +77,7 @@ export function UnitsDropdown(){
 
     return(
         <>
-            <Dropdown logo={UnitsIcon} title="Units" options={options} submitFn={submitFn}/>
+            <Dropdown logo={UnitsIcon} title="Units" options={newOptions} submitFn={submitFn}/>
         </>
     )
 }

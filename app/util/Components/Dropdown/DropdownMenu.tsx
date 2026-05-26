@@ -1,11 +1,13 @@
 'use client'
 import { RefObject } from "react"
 import { Option } from "./Option"
-import { SectionTitle } from "./SectionTitle"
+
+import { OptionType} from "../../types"
+import { OptionSection } from "./OptionSection"
 
 type DropDownMenuProps = {
-    options:string[] 
-    submitFn:(locationData:any) => void
+    options:OptionType[]
+    onSelect:(...args:any[]) => void
     className?:string
     ref?:RefObject<HTMLDivElement | null>
 }
@@ -14,7 +16,7 @@ type DropDownMenuProps = {
 
 
 
-export const DropdownMenu = ({options, submitFn, className, ref}: DropDownMenuProps) =>{
+export const DropdownMenu = ({options, onSelect, className, ref}: DropDownMenuProps) =>{
     
 
     return(
@@ -22,12 +24,13 @@ export const DropdownMenu = ({options, submitFn, className, ref}: DropDownMenuPr
             <div className="my-2 px-2">
             {
                 options.map((option, i) => {
-                    if(option.startsWith('/')){
-                        return <SectionTitle value={option}/>
+                    if(option.type === "option"){
+                        return <Option data={option} onSelect={onSelect}/> 
                     }
-                    return (
-                        <Option value={option} submitFn={submitFn}/>
-                    )
+                    if(option.type === "section"){
+                        return <OptionSection data={option}/>
+                    }
+                    
                 })
             }
             </div>
