@@ -1,8 +1,10 @@
 
+import { Suspense } from "react";
 import Main from "./(components)/Main/Main";
 
 import { getWeatherData } from "./util/getWeatherData";
 import { WeatherData } from "./util/types";
+import { cookies } from "next/headers";
 export default async function Page({
   searchParams,
 }: {
@@ -21,11 +23,12 @@ export default async function Page({
  
   weatherData = await getWeatherData(lat, long, name, country) 
   
-  
-   
+
   return (
+
     <div className="w-screen h-screen p-5 flex flex-col text-white">
       <Main weatherData={weatherData}/>
     </div>
+    
   );
 }

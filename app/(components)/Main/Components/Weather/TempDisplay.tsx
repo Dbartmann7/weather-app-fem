@@ -4,15 +4,16 @@ import SunnyIcon from '@/public/images/icon-sunny.webp'
 import Image from 'next/image'
 import { CurrentWeatherData } from '@/app/util/types'
 import { dateToString } from '@/app/util/DateConversions'
+import { temp } from '@/app/util/UnitConversions'
 
 
 type TempDisplayProps = {
     data:CurrentWeatherData
+    preferences:any
 }
 
-export default function TempDisplay({data}:TempDisplayProps){
+export default function TempDisplay({data, preferences}:TempDisplayProps){
 
-    
 
 
     return(
@@ -26,7 +27,7 @@ export default function TempDisplay({data}:TempDisplayProps){
                 </div>
                 <div className='flex relative items-center justify-between w-fit h-1/2 '>
                     <Image src={SunnyIcon} alt={"Sunny"} className='w-3/7'/>
-                    <p className='text-8xl font-semibold font-sans'>{`${data?.temperature_2m}°`}</p>
+                    <p className='text-8xl font-semibold font-sans'>{`${Math.floor(temp(data?.temperature_2m, preferences))}°`}</p>
                 </div>
             </div>
         </div>

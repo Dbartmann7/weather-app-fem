@@ -1,12 +1,8 @@
-import { fetchWeatherApi } from "openmeteo"
+import { cookies } from "next/headers"
 
-export const getLocationsData = async (location:string) => {
+export const setCookie = async (key:string, value:string) => {
+    "use server"
 
-    let res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`)
-    let data = await res.json()
-
-    
-    return data.results || []
-}   
-
-
+    const cookieStore = await cookies()
+    cookieStore.set(key, value)
+}

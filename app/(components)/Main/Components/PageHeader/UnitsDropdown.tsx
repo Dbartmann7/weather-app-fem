@@ -3,20 +3,10 @@ import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
 import { OptionType} from "@/app/util/types"
 import UnitsIcon from "@/public/images/icon-units.svg"
 
-
+const switchUnitSystem = {
+    
+}
 export function UnitsDropdown(){
-    const options = ["Switch to Imperial", 
-                        "/Temperature", 
-                            "Celsius (°C)", 
-                            "Fahrenheit (°F)",
-                        "/Wind Speed",
-                            "km/h",
-                            "mph",
-                        "/Precipitation",
-                            "Millimeters (mm)",
-                            "Inches (in)" 
-                        ] 
-
 
     const newOptions: OptionType[] = [
         {

@@ -37,3 +37,10 @@ export type OptionType = {
   onSelect?: (...args:any[]) => void
   options?:OptionType[]
 }
+
+export type UnitPreferences = {
+  overall: "imperial" | "metric" | null
+  temp: "c" | "f"
+  precip: "mm" | "in"
+  speed: "km/h" | "mph"
+}

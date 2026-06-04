@@ -1,6 +1,6 @@
 import { cacheLife } from "next/cache";
 import { fetchWeatherApi } from "openmeteo";
-import { DailyWeatherData, HourlyWeatherData, WeatherData } from "./types";
+import { DailyWeatherData, HourlyWeatherData, UnitPreferences, WeatherData } from "./types";
 
 let days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 
@@ -43,7 +43,7 @@ const convertHourObjToArr: (data:any, utcOffsetSeconds:number) => HourlyWeatherD
     return result
 }
 
-export const getWeatherData: (lat:number, long:number, name:string, country:string) => Promise<WeatherData> = async (lat:number, long:number, name:string, country:string) => {
+export const getWeatherData: (lat:number, long:number, name:string, country:string, preferences?:UnitPreferences) => Promise<WeatherData> = async (lat:number, long:number, name:string, country:string) => {
     "use cache"
     const params = {
         latitude: lat,
@@ -83,11 +83,11 @@ export const getWeatherData: (lat:number, long:number, name:string, country:stri
     const weatherData = {
         current: {
             time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
-            temperature_2m: Math.floor(current.variables(0)!.value()),
-            relative_humidity_2m: Math.floor(current.variables(1)!.value()),
-            apparent_temperature: Math.floor(current.variables(2)!.value()),
-            precipitation: Math.floor(current.variables(3)!.value()),
-            wind_speed_10m: Math.floor(current.variables(4)!.value()),
+            temperature_2m:current.variables(0)!.value(),
+            relative_humidity_2m: current.variables(1)!.value(),
+            apparent_temperature: current.variables(2)!.value(),
+            precipitation: current.variables(3)!.value(),
+            wind_speed_10m: current.variables(4)!.value(),
             weather_code: current.variables(5)!.value(),
             name:name,
             country:country

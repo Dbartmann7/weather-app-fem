@@ -4,7 +4,7 @@ import Image from "next/image"
 import SearchIcon from "@/public/images/icon-search.svg"
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
-import { getLocationsData } from "@/app/actions"
+import { getLocationsData } from "@/app/util/getLocationsData"
 
 
 
