@@ -88,7 +88,7 @@ export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
         <div className="flex flex-col w-full max-w-200 xl:max-w-93 p-6 max-h-167 bg-light-bg rounded-2xl border border-border-color relative ">
             <div className="flex flex-row items-center pb-4">
                 <h3 className="mr-auto">Hourly Forecast</h3>
-                <Dropdown title={dateToDay(selectedDay)} options={newOptions} submitFn={handleSelect} closeAfterSelect={true}/>
+                <Dropdown title={dateToDay(selectedDay)} options={newOptions} closeAfterSelect={true}/>
             </div>
             <div className="flex flex-col  gap-4 overflow-y-scroll h-full">
                 {

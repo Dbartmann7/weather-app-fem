@@ -1,11 +1,8 @@
 import { UnitPreferences, WeatherData } from "@/app/util/types";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
-import InfoCard from "./InfoCard";
+
 import CurrentDisplay from "./CurrentDisplay";
-import { cookies } from "next/headers";
-import { precip, speed, temp } from "@/app/util/UnitConversions";
-import { getUnitPreferences } from "@/app/util/UnitPreferences";
 
 
 
@@ -15,9 +12,6 @@ import { getUnitPreferences } from "@/app/util/UnitPreferences";
 export default async function Weather({data}:{data:WeatherData}){
 
     
-
-    let unitPreferences:UnitPreferences = await getUnitPreferences()
-
      
     return(
         <div className="flex flex-col xl:flex-row w-full gap-8">

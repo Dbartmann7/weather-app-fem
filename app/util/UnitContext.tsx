@@ -3,7 +3,7 @@
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 import { UnitPreferences } from './types'
- 
+
 export type UnitContextType = {
     preferences:UnitPreferences,
     setPreferences: Dispatch<SetStateAction<UnitPreferences>>
@@ -12,16 +12,30 @@ export type UnitContextType = {
 export const UnitContext = createContext<UnitContextType | undefined>(undefined)
  
 export default function UnitProvider({
-  children, initialPreferences
+  children
 }: {
   children: React.ReactNode,
-  initialPreferences:UnitPreferences
-}) {
 
-    const [preferences, setPreferences] = useState<UnitPreferences>(initialPreferences) 
+}) {
+    const defaultPreferences:UnitPreferences = {
+      "overall":null,
+      "temp":"c",
+      "precip":"mm",
+      "speed":"mph"
+    }
+
+    
+    const [preferences, setPreferences] = useState<UnitPreferences>(defaultPreferences) 
 
     useEffect(() => {
-      console.log(preferences)
+      const preferenceString = localStorage.getItem("unitPreferences")
+      
+      if(preferenceString) setPreferences(JSON.parse(preferenceString))
+      
+    }, [])
+
+    useEffect(() => {
+      localStorage.setItem("unitPreferences", JSON.stringify(preferences))
     }, [preferences])
     
      

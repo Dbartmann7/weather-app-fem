@@ -3,8 +3,6 @@ import {Bricolage_Grotesque, DM_Sans} from 'next/font/google'
 import type { Metadata } from "next";
 import "./globals.css";
 import UnitProvider from './util/UnitContext';
-import { getUnitPreferences } from './actions';
-;
 
 const dmSans = DM_Sans({
   subsets:["latin"],
@@ -30,12 +28,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const initialPreferences = await getUnitPreferences()
-
   return (
     <html lang="en">
       <body className={`${dmSans.className} ${bricolageGrotesque.variable}`}>
-        <UnitProvider initialPreferences={initialPreferences}>
+        <UnitProvider>
         {children}
         </UnitProvider>
       </body>

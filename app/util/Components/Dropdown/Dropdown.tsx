@@ -11,8 +11,7 @@ type DropdownProps = {
     title:string
     logo?: string
     options: MenuItem[]
-    submitFn: (...args: any[]) => any 
-    closeAfterSelect: boolean
+    closeAfterSelect?: boolean
 
 }
 

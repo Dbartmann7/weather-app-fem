@@ -107,13 +107,9 @@ export function UnitsDropdown(){
         },
     ]
 
-    const submitFn = (option:string) => {
-        console.log(option)
-    }
-
     return(
         <>
-            <Dropdown logo={UnitsIcon} title="Units" options={newOptions} submitFn={submitFn} closeAfterSelect={true}/>
+            <Dropdown logo={UnitsIcon} title="Units" options={newOptions}/>
         </>
     )
 }
