@@ -1,12 +1,16 @@
 'use client'
 import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
 import { OptionType} from "@/app/util/types"
+import { UnitContext } from "@/app/util/UnitContext"
 import UnitsIcon from "@/public/images/icon-units.svg"
+import { use } from "react"
 
 const switchUnitSystem = {
     
 }
 export function UnitsDropdown(){
+
+    const unitContext = use(UnitContext)
 
     const newOptions: OptionType[] = [
         {
@@ -17,7 +21,14 @@ export function UnitsDropdown(){
         {
             label:"Temperature",
             type:"section",
-            onSelect:() => {},
+            onSelect:() => {
+                unitContext?.setPreferences((prev) => {
+                    let newPref = {...prev}
+                    newPref.temp = prev.temp === "c" ? "f" : "c"
+
+                    return newPref
+                })
+            },
             options:[
                 {
                     label:"Celsius (°C)",
