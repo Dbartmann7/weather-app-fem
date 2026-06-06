@@ -2,21 +2,21 @@
 import { RefObject } from "react"
 import { Option } from "./Option"
 
-import { OptionType} from "../../types"
+import { MenuItem } from "../../types"
 import { OptionSection } from "./OptionSection"
 
 type DropDownMenuProps = {
-    options:OptionType[]
-    onSelect:(...args:any[]) => void
+    options:MenuItem[]
     className?:string
     ref?:RefObject<HTMLDivElement | null>
+    close:() => void
 }
 
 
 
 
 
-export const DropdownMenu = ({options, onSelect, className, ref}: DropDownMenuProps) =>{
+export const DropdownMenu = ({options, className, ref, close}: DropDownMenuProps) =>{
     
 
     return(
@@ -25,10 +25,10 @@ export const DropdownMenu = ({options, onSelect, className, ref}: DropDownMenuPr
             {
                 options.map((option, i) => {
                     if(option.type === "option"){
-                        return <Option data={option} onSelect={onSelect}/> 
+                        return <Option data={option} close={close}/> 
                     }
                     if(option.type === "section"){
-                        return <OptionSection data={option} onSelect={onSelect}/>
+                        return <OptionSection data={option} close={close}/>
                     }
                     
                 })

@@ -30,12 +30,19 @@ export type DailyWeatherData = {
   tempMin: number
 }
 
+export type MenuItem = OptionType | SectionType
+
+export type SectionType = {
+  type:"section",
+  label:string,
+  options: OptionType[]
+}
 
 export type OptionType = {
-  type: "option" | "section"
+  type: "option"
   label:string
-  onSelect?: (...args:any[]) => void
-  options?:OptionType[]
+  onSelect: (...args:any[]) => void
+  value?:string
 }
 
 export type UnitPreferences = {

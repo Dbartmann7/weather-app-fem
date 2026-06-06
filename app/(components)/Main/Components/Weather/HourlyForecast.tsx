@@ -33,39 +33,45 @@ export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
 
     const [dayOffset, setDayOffset] = useState<number>(0)
 
-    const handleSelect = (option:OptionType) => {
-      
-        setSelectedDay(getDayNum(option.label))
+    const handleSelect = (value:string) => {
+        setSelectedDay(getDayNum(value))
     }
     const newOptions:OptionType[] = [
         {
             type:"option",
             label:"Monday",
+            value:"Monday",
             onSelect:handleSelect
         }, 
         {
             type:"option",
             label:"Tuesday",
+            value:"Tuesday",
             onSelect:handleSelect
         }, {
             type:"option",
             label:"Wednesday",
+            value:"Wednesday",
             onSelect:handleSelect
         }, {
             type:"option",
             label:"Thursday",
+            value:"Thursday",
             onSelect:handleSelect
         }, {
             type:"option",
             label:"Friday",
+            value:"Friday",
             onSelect:handleSelect
         }, {
             type:"option",
             label:"Saturday",
+            value:"Saturday",
             onSelect:handleSelect
         }, {
             type:"option",
             label:"Sunday",
+            value:"Sunday",
             onSelect:handleSelect
         }, 
     ] 

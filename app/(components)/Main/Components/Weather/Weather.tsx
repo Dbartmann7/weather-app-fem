@@ -13,8 +13,7 @@ import { getUnitPreferences } from "@/app/util/UnitPreferences";
 
 
 export default async function Weather({data}:{data:WeatherData}){
-    const cookiesStore = await cookies()
-    let unitPreferenceString = cookiesStore.get("units")?.value
+    
     const feelsTemp = data.current.apparent_temperature ?? 0
     const precipMm = data.current.precipitation ?? 0
     const windSpeed = data.current.wind_speed_10m ?? 0

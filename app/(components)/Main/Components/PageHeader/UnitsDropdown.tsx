@@ -1,18 +1,48 @@
 'use client'
 import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
-import { OptionType} from "@/app/util/types"
+import { MenuItem, OptionType} from "@/app/util/types"
 import { UnitContext } from "@/app/util/UnitContext"
 import UnitsIcon from "@/public/images/icon-units.svg"
 import { use } from "react"
 
-const switchUnitSystem = {
-    
-}
 export function UnitsDropdown(){
 
     const unitContext = use(UnitContext)
+    
+    const changeTemp = (value:"c" | "f") => {
+        if(unitContext?.preferences.temp === value) return
 
-    const newOptions: OptionType[] = [
+        unitContext?.setPreferences((prev) => {
+            let newPref = {...prev}
+            newPref.temp = value
+
+            return newPref
+        })
+    }
+
+    const changePrecip = (value:"mm" | "in") => {
+        if(unitContext?.preferences.precip === value) return
+
+        unitContext?.setPreferences((prev) => {
+            let newPref = {...prev}
+            newPref.precip = value
+
+            return newPref
+        })
+    }
+
+    const changeSpeed = (value:"km/h" | "mph") => {
+        if(unitContext?.preferences.speed === value) return
+
+        unitContext?.setPreferences((prev) => {
+            let newPref = {...prev}
+            newPref.speed = value
+
+            return newPref
+        })
+    }
+
+    const newOptions: MenuItem[] = [
         {
             label:"Switch to Imperial",
             type:"option",
@@ -21,52 +51,57 @@ export function UnitsDropdown(){
         {
             label:"Temperature",
             type:"section",
-            onSelect:() => {
-                unitContext?.setPreferences((prev) => {
-                    let newPref = {...prev}
-                    newPref.temp = prev.temp === "c" ? "f" : "c"
-
-                    return newPref
-                })
-            },
+            
             options:[
                 {
                     label:"Celsius (°C)",
-                    type:"option"
+                    type:"option",
+                    value:"c",
+                    onSelect:changeTemp
                 },
                 {
                     label:"Fahrenheit (°F)",
-                    type:"option"
+                    type:"option",
+                    value:"f",
+                    onSelect:changeTemp
                 }
             ]
         },
         {
             label:"Wind Speed",
             type:"section",
-            onSelect:() => {},
+          
             options:[
                 {
                     label:"km/h",
-                    type:"option"
+                    type:"option",
+                    value:"km/h",
+                    onSelect: changeSpeed
                 },
                 {
                     label:"mph",
-                    type:"option"
+                    type:"option",
+                    value:"mph",
+                    onSelect: changeSpeed
                 }
             ]
         },
         {
             label:"Precipitation",
             type:"section",
-            onSelect:() => {},
+        
             options:[
                 {
                     label:"Millimeters (mm)",
-                    type:"option"
+                    type:"option",
+                    value:"mm",
+                    onSelect: changePrecip
                 },
                 {
                     label:"Inches (in)",
-                    type:"option"
+                    type:"option",
+                    value:"in",
+                    onSelect: changePrecip
                 }
             ]
         },

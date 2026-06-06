@@ -5,13 +5,18 @@ import tick from "@/public/images/icon-checkmark.svg"
 
 type OptionProps = {
     data:OptionType,
-    onSelect:(...args:any[]) => void
+    close: () => void
 }
 
-export const Option = ({data, onSelect}:OptionProps) => {
+export const Option = ({data, close}:OptionProps) => {
+
+    const handleSubmit = () => {
+        close()
+        data.onSelect(data.value)
+    }
 
     return(
-        <div className="flex w-full h-10 hover:bg-white/10 rounded-md pr-2" onClick={() => onSelect(data)}>
+        <div className="flex w-full h-10 hover:bg-white/10 rounded-md pr-2" onClick={handleSubmit}>
             <p className="my-auto px-2">{
                data.label
             }</p>

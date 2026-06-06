@@ -1,10 +1,8 @@
-
-import { Suspense } from "react";
 import Main from "./(components)/Main/Main";
 
 import { getWeatherData } from "./util/getWeatherData";
 import { WeatherData } from "./util/types";
-import { cookies } from "next/headers";
+
 export default async function Page({
   searchParams,
 }: {

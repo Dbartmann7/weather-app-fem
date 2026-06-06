@@ -5,19 +5,19 @@ import { RefObject, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import DropdownIcon from "@/public/images/icon-dropdown.svg"
 import { DropdownMenu } from "./DropdownMenu"
-import { OptionType } from "../../types"
+import { MenuItem, OptionType } from "../../types"
 
 type DropdownProps = {
     title:string
     logo?: string
-    options: OptionType[]
+    options: MenuItem[]
     submitFn: (...args: any[]) => any 
-    closeAfterSelect?: boolean
+    closeAfterSelect: boolean
 
 }
 
 
-export function Dropdown({title, logo, options=[], closeAfterSelect}: DropdownProps){
+export function Dropdown({title, logo, options=[], closeAfterSelect=false}: DropdownProps){
     
     let [isMenuVisible, setIsMenuVisible] = useState<boolean>(false)
     let menuRef = useRef<HTMLDivElement | null>(null)
@@ -43,11 +43,12 @@ export function Dropdown({title, logo, options=[], closeAfterSelect}: DropdownPr
         })
     }
 
-    const newSubmitFn = (option:OptionType) =>{
-        if(closeAfterSelect) setIsMenuVisible(false)
-        if(option.onSelect) option.onSelect(option)
+    let close = () => {
+        if(closeAfterSelect){
+            setIsMenuVisible(false)
+        }
     }
-    
+
     return (
         <div className="relative">
             <div className="relative flex w-fit gap-2 h-10 py-2 px-4 bg-white/10 hover:bg-white/20 rounded-md" onClick={toggleDropdown}>
@@ -56,7 +57,7 @@ export function Dropdown({title, logo, options=[], closeAfterSelect}: DropdownPr
                 <Image src={DropdownIcon} alt="Drop" className={isMenuVisible ? 'rotate-180' : ""}/>
             </div>
             {
-                isMenuVisible ? <DropdownMenu ref={menuRef} options={options} onSelect={newSubmitFn} className="border border-border-color w-52 right-0 top-12"/>
+                isMenuVisible ? <DropdownMenu ref={menuRef} options={options} close={close} className="border border-border-color w-52 right-0 top-12"/>
                 :
                 null
 

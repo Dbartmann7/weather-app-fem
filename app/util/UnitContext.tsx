@@ -21,7 +21,7 @@ export default function UnitProvider({
     const [preferences, setPreferences] = useState<UnitPreferences>(initialPreferences) 
 
     useEffect(() => {
-      console.log("new preference: " + preferences.temp)
+      console.log(preferences)
     }, [preferences])
     
      
