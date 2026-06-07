@@ -43,6 +43,7 @@ export type OptionType = {
   label:string
   onSelect: (...args:any[]) => void
   value?:string
+  selected?:boolean
 }
 
 export type UnitPreferences = {

@@ -84,6 +84,15 @@ export function UnitsDropdown(){
         })
     }
 
+    const isSelected = (value:string) => {
+        if(unitContext){
+            let {temp, precip, speed} = unitContext.preferences
+            if(temp === value || precip === value || speed === value) return true
+        }
+
+        return false
+    }
+
     const newOptions: MenuItem[] = [
         {
             label:overallLabel,
@@ -100,7 +109,8 @@ export function UnitsDropdown(){
                     label:"Celsius (°C)",
                     type:"option",
                     value:"c",
-                    onSelect:changeTemp
+                    onSelect:changeTemp,
+                    
                 },
                 {
                     label:"Fahrenheit (°F)",

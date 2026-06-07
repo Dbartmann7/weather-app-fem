@@ -5,24 +5,23 @@ import Image from "next/image"
 import RainIcon from "@/public/images/icon-rain.webp"
 import { HourlyWeatherData, OptionType } from "@/app/util/types"
 import { dateToDay, dateToHour, getDayNum } from "@/app/util/DateConversions"
-import {  RefObject,  useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
+import { UnitContext } from "@/app/util/UnitContext"
+import { temp } from "@/app/util/UnitConversions"
 
-type DayDropdownProps = {
-    day:number, 
-    setDay: (option: string) => void, 
-    isFocused:boolean, 
-    onClick?: () => void
-    menuRef?: RefObject<HTMLDivElement | null>
-}
 
 function HourInfoCard({data}:{data:HourlyWeatherData}){
+    const unitContext = use(UnitContext)
+    if(!unitContext){
+        throw new Error("Preferences not available")
+    }
 
     return(
         <div className="flex w-full gap-2 h-14 py-2 px-4 items-center bg-white/5 rounded-md border border-border-color">
             <Image className="max-h-full w-auto" src={RainIcon} alt={"Rain"}/>
             <p className="mr-auto">{dateToHour(data.time)}</p>
-            <p>{data.temp}</p>
+            <p>{Math.floor(temp(data.temp, unitContext.preferences))}</p>
         </div>
     )
 }

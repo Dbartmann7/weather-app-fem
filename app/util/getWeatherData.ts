@@ -15,8 +15,8 @@ const convertDayObjToArr: (data:any, utcOffsetSeconds:number) => DailyWeatherDat
         result.push(
             {
                 time: new Date((Number(data.time()) + i * data.interval() + utcOffsetSeconds) * 1000),
-                tempMax: Math.floor(tempMax[i]),
-                tempMin: Math.floor(tempMin[i]),
+                tempMax: tempMax[i],
+                tempMin: tempMin[i],
                 weatherCode: weatherCode[i]
             }
         )
@@ -34,7 +34,7 @@ const convertHourObjToArr: (data:any, utcOffsetSeconds:number) => HourlyWeatherD
         result.push(
             {
                 time: new Date((Number(data.time()) + i * data.interval() + utcOffsetSeconds) * 1000),
-                temp: Math.floor(temp[i]),
+                temp: temp[i],
                 weatherCode: weatherCode[i]
             }
         )
