@@ -18,7 +18,6 @@ export default function UnitProvider({
 
 }) {
     const defaultPreferences:UnitPreferences = {
-      "overall":null,
       "temp":"c",
       "precip":"mm",
       "speed":"mph"
@@ -43,9 +42,6 @@ export default function UnitProvider({
         preferences:preferences,
         setPreferences:setPreferences 
     }
-
-
-
 
     return <UnitContext.Provider value={value}>{children}</UnitContext.Provider>
 }

@@ -1,14 +1,56 @@
 'use client'
 import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
-import { MenuItem, OptionType} from "@/app/util/types"
+import { MenuItem} from "@/app/util/types"
 import { UnitContext } from "@/app/util/UnitContext"
 import UnitsIcon from "@/public/images/icon-units.svg"
-import { use } from "react"
+import { use, useEffect, useState } from "react"
 
 export function UnitsDropdown(){
 
     const unitContext = use(UnitContext)
-    
+    const [overallLabel, setOverallLabel] = useState<"Switch to Imperial" | "Switch to Metric">("Switch to Imperial")
+    const [overallValue, setOverallValue] = useState<"imperial" | "metric">("imperial")
+
+    useEffect(() => {
+        // switch overall change if user individually sets all units to metric/imperial
+        if(unitContext){
+            let {temp, precip, speed} = unitContext.preferences
+            if(temp === "c" && precip === "mm" && speed === "km/h" && overallValue === "metric"){
+                setOverallLabel("Switch to Imperial")
+                setOverallValue("imperial")
+            }
+            if(temp === "f" && precip === "in" && speed === "mph" && overallValue === "imperial"){
+                setOverallLabel("Switch to Metric")
+                setOverallValue("metric")
+            }
+
+        }
+        
+
+    }, [unitContext?.preferences])
+
+
+    const setOverall = (value:"metric" | "imperial") => {
+        unitContext?.setPreferences(() => {
+            if(value === "metric"){
+                setOverallLabel("Switch to Imperial")
+                setOverallValue("imperial")
+                return {
+                    temp:"c",
+                    precip:"mm",
+                    speed:"km/h"
+                }
+            }
+            setOverallLabel("Switch to Metric")
+            setOverallValue("metric")
+            return {
+                temp:"f",
+                precip:"in",
+                speed:"mph"
+            } 
+        })
+    }
+
     const changeTemp = (value:"c" | "f") => {
         if(unitContext?.preferences.temp === value) return
 
@@ -44,9 +86,10 @@ export function UnitsDropdown(){
 
     const newOptions: MenuItem[] = [
         {
-            label:"Switch to Imperial",
+            label:overallLabel,
             type:"option",
-            onSelect:() => {}
+            value:overallValue,
+            onSelect:setOverall
         },
         {
             label:"Temperature",

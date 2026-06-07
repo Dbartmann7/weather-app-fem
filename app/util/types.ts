@@ -46,7 +46,6 @@ export type OptionType = {
 }
 
 export type UnitPreferences = {
-  overall: "imperial" | "metric" | null
   temp: "c" | "f"
   precip: "mm" | "in"
   speed: "km/h" | "mph"

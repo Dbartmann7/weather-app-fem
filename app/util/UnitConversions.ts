@@ -3,9 +3,9 @@ import { UnitPreferences } from "./types";
 
 
 export const temp = (tempC:number, preferences:UnitPreferences) => {
-    const {overall, temp} = preferences
+    const {temp} = preferences
 
-    if(overall === "imperial" || (!overall && temp === "f")){
+    if(temp === "f"){
         return tempC * (9/5) + 32
     }
 
@@ -13,9 +13,9 @@ export const temp = (tempC:number, preferences:UnitPreferences) => {
 }
 
 export const precip = (precipMm:number, preferences:UnitPreferences) => {
-    const {overall, precip} = preferences
+    const {precip} = preferences
 
-    if(overall === "imperial" || (!overall && precip === "in")){
+    if(precip === "in"){
         return precipMm / 25.4
     }
 
@@ -23,9 +23,9 @@ export const precip = (precipMm:number, preferences:UnitPreferences) => {
 }
 
 export const speed = (speedKph:number, preferences:UnitPreferences) => {
-    const {overall, speed} = preferences
+    const {speed} = preferences
 
-    if(overall === "imperial" || (!overall && speed === "mph")){
+    if(speed === "mph"){
         return speedKph / 1.609
     }
 
