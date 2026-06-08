@@ -29,7 +29,6 @@ export function UnitsDropdown(){
 
     }, [unitContext?.preferences])
 
-
     const setOverall = (value:"metric" | "imperial") => {
         unitContext?.setPreferences(() => {
             if(value === "metric"){

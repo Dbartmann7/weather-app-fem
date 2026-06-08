@@ -8,6 +8,7 @@ import { TempDisplay } from './TempDisplay'
 import InfoCard from './InfoCard'
 import { precip, speed, temp } from '@/app/util/UnitConversions'
 import { CurrentInfoCards } from './CurrentInfoCards'
+import { WCtoIcon } from '@/public/images/WeatherCode'
 
 
 type CurrentDisplayProps = {
@@ -33,7 +34,7 @@ export default function CurrentDisplay({data}:CurrentDisplayProps){
                         <h3 className='font-sans text-gray-400 text-lg'>{dateToString(data.time)}</h3>
                     </div>
                     <div className='flex relative items-center justify-between w-fit h-1/2 '>
-                        <Image src={SunnyIcon} alt={"Sunny"} className='w-3/7'/>
+                        <Image src={WCtoIcon(data.weather_code) ?? ""} alt={"Sunny"} className='w-3/7'/>
                         <TempDisplay value={data.temperature_2m}/>
                     </div>
                 </div>

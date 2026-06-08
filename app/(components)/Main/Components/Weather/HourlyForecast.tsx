@@ -9,6 +9,7 @@ import { use, useEffect, useState } from "react"
 import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
 import { UnitContext } from "@/app/util/UnitContext"
 import { temp } from "@/app/util/UnitConversions"
+import { WCtoIcon } from "@/public/images/WeatherCode"
 
 
 function HourInfoCard({data}:{data:HourlyWeatherData}){
@@ -19,7 +20,7 @@ function HourInfoCard({data}:{data:HourlyWeatherData}){
 
     return(
         <div className="flex w-full gap-2 h-14 py-2 px-4 items-center bg-white/5 rounded-md border border-border-color">
-            <Image className="max-h-full w-auto" src={RainIcon} alt={"Rain"}/>
+            <Image className="max-h-full w-auto" src={WCtoIcon(data.weatherCode) ?? ""} alt={""}/>
             <p className="mr-auto">{dateToHour(data.time)}</p>
             <p>{Math.floor(temp(data.temp, unitContext.preferences))}</p>
         </div>
