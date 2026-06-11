@@ -54,6 +54,7 @@ export const getWeatherData: (lat:number, long:number, name:string, country:stri
         past_days: 0,
         forecast_days: 7,
         timezone: "auto",
+        
     };
     const url = "https://api.open-meteo.com/v1/forecast";
     const responses = await fetchWeatherApi(url, params);

@@ -3,6 +3,7 @@ import {Bricolage_Grotesque, DM_Sans} from 'next/font/google'
 import type { Metadata } from "next";
 import "./globals.css";
 import UnitProvider from './util/UnitContext';
+import PageHeader from './(components)/Main/Components/PageHeader/PageHeader';
 
 const dmSans = DM_Sans({
   subsets:["latin"],
@@ -30,9 +31,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${dmSans.className} ${bricolageGrotesque.variable}`}>
+      <body className={`${dmSans.className} ${bricolageGrotesque.variable} flex flex-col p-5 pb-10 xl:pb-24`}>
         <UnitProvider>
-        {children}
+          <PageHeader/>
+          {children}
         </UnitProvider>
       </body>
     </html>

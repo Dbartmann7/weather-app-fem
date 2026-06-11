@@ -24,7 +24,7 @@ export default async function Page({
 
   return (
 
-    <div className="w-screen h-screen p-5 flex flex-col text-white">
+    <div className="flex flex-col text-white">
       <Main weatherData={weatherData}/>
     </div>
     
