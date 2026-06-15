@@ -11,9 +11,10 @@ import { getLocationsData } from "@/app/util/getLocationsData"
 
 export default function Search(){
     
-    const [locationResults, setLocationResults] = useState([]);
+    const [locationResults, setLocationResults] = useState<string[]>([]);
     const [location, setLocation] = useState<string>("")
     const [showList, setShowList] = useState<boolean>(false)
+    const [error, setError] = useState<string | undefined>()
     const router = useRouter()
 
 
@@ -40,9 +41,19 @@ export default function Search(){
     
     const submitLocation = async () => {
         setShowList(true)
-        const data = await getLocationsData(location)
-        setLocationResults(data)
+        const res = await getLocationsData(location)
+        if(!res.error && res.data.length === 0){
+            setError("No search results found!")
+        }else{
+            setError(res.error)
+        }
+        
+        setLocationResults(res.data)
+        
     }
+    useEffect(() => {
+        console.log(error)
+    }, [error])
     
     const submitLatLong = (locationData:any) => {
         setShowList(false)
@@ -57,7 +68,7 @@ export default function Search(){
 
     return(
         <div className="flex flex-col justify-center w-full max-w-xl  sm:flex-row gap-3" ref={searchRef}>
-                <SearchBar value={location} setValue={setLocation} submitLocation={submitLocation} submitLatLong={submitLatLong} locations={locationResults} showList={showList}/>
+                <SearchBar error={error} value={location} setValue={setLocation} submitLocation={submitLocation} submitLatLong={submitLatLong} locations={locationResults} showList={showList}/>
                 <button className="w-full h-12 px-6 rounded-xl bg-light-blue sm:max-w-fit" onClick={submitLocation}>
                     Search
                 </button>
@@ -66,6 +77,7 @@ export default function Search(){
 }
 
 type SearchBarProps = {
+    error: string | undefined
     value:string, 
     setValue:Dispatch<SetStateAction<string>>, 
     submitLocation:() => void, 
@@ -74,7 +86,7 @@ type SearchBarProps = {
     showList:boolean
 }
 
-function SearchBar({value, setValue, submitLocation, submitLatLong, locations, showList}:SearchBarProps){
+function SearchBar({error, value, setValue, submitLocation, submitLatLong, locations, showList}:SearchBarProps){
     
     return(
         <div className="flex bg-light-bg rounded-xl w-full h-12 px-6 relative">
@@ -88,20 +100,22 @@ function SearchBar({value, setValue, submitLocation, submitLatLong, locations, s
                 onKeyDown={(e) => {if(e.key === 'Enter') submitLocation()}}
             />
 
-            {showList ? <SearchDropdown locations={locations} submitLatLong={submitLatLong}/> : null}
+            {showList ? <SearchDropdown error={error} locations={locations} submitLatLong={submitLatLong}/> : null}
         </div>
     )
 }
 
 
 
-function SearchDropdown({locations, submitLatLong}: {locations:any[], submitLatLong:(locationData:any) => void}){
+function SearchDropdown({error, locations, submitLatLong}: {error:string | undefined, locations:any[], submitLatLong:(locationData:any) => void}){
     
 
     return(
-        <div className="absolute flex flex-col bg-light-bg rounded-xl w-full h-fit min-h-14 left-0 top-13 z-50">
-            <div className="my-2 px-2">
+        <div className="absolute flex flex-col justify-center bg-light-bg rounded-xl w-full h-fit min-h-14 left-0 top-13 z-50">
+            <div className="my-2 px-2 ">
             {
+                error ? <p className="my-auto px-2">{error}</p> 
+                :
                 locations.map((location, i) => {
                     return(
                         <div className="flex w-full h-10 hover:bg-white/10 rounded-md"  key={i} onClick={() => submitLatLong(location)}>

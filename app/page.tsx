@@ -1,3 +1,4 @@
+import Error from "next/error";
 import Main from "./(components)/Main/Main";
 
 import { getWeatherData } from "./util/getWeatherData";
@@ -8,6 +9,7 @@ export default async function Page({
 }: {
   searchParams: { lat?: number; long?: number; name?:string; country?:string };
 }) {
+ 
   let {lat, long, name, country} = await searchParams
   let weatherData: WeatherData | null = null;
   
