@@ -5,6 +5,7 @@ import SearchIcon from "@/public/images/icon-search.svg"
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { getLocationsData } from "@/app/util/getLocationsData"
+import { OctagonAlert } from "lucide-react"
 
 
 
@@ -15,6 +16,7 @@ export default function Search(){
     const [location, setLocation] = useState<string>("")
     const [showList, setShowList] = useState<boolean>(false)
     const [error, setError] = useState<string | undefined>()
+    const [loading, setLoading] = useState<boolean>(false)
     const router = useRouter()
 
 
@@ -34,27 +36,21 @@ export default function Search(){
         }
     }, [])
 
-
-    useEffect(() => {
-        console.log(locationResults)
-    }, [locationResults])
     
     const submitLocation = async () => {
         setShowList(true)
+        setLoading(true)
         const res = await getLocationsData(location)
         if(!res.error && res.data.length === 0){
             setError("No search results found!")
         }else{
             setError(res.error)
         }
-        
+        setLoading(false)        
         setLocationResults(res.data)
         
     }
-    useEffect(() => {
-        console.log(error)
-    }, [error])
-    
+
     const submitLatLong = (locationData:any) => {
         setShowList(false)
         setLocation(`${locationData.name}, ${locationData.admin1}`)
@@ -68,7 +64,7 @@ export default function Search(){
 
     return(
         <div className="flex flex-col justify-center w-full max-w-xl  sm:flex-row gap-3" ref={searchRef}>
-                <SearchBar error={error} value={location} setValue={setLocation} submitLocation={submitLocation} submitLatLong={submitLatLong} locations={locationResults} showList={showList}/>
+                <SearchBar error={error} loading={loading} value={location} setValue={setLocation} submitLocation={submitLocation} submitLatLong={submitLatLong} locations={locationResults} showList={showList}/>
                 <button className="w-full h-12 px-6 rounded-xl bg-light-blue sm:max-w-fit" onClick={submitLocation}>
                     Search
                 </button>
@@ -78,6 +74,7 @@ export default function Search(){
 
 type SearchBarProps = {
     error: string | undefined
+    loading:boolean
     value:string, 
     setValue:Dispatch<SetStateAction<string>>, 
     submitLocation:() => void, 
@@ -86,7 +83,7 @@ type SearchBarProps = {
     showList:boolean
 }
 
-function SearchBar({error, value, setValue, submitLocation, submitLatLong, locations, showList}:SearchBarProps){
+function SearchBar({error, loading, value, setValue, submitLocation, submitLatLong, locations, showList}:SearchBarProps){
     
     return(
         <div className="flex bg-light-bg rounded-xl w-full h-12 px-6 relative">
@@ -100,29 +97,33 @@ function SearchBar({error, value, setValue, submitLocation, submitLatLong, locat
                 onKeyDown={(e) => {if(e.key === 'Enter') submitLocation()}}
             />
 
-            {showList ? <SearchDropdown error={error} locations={locations} submitLatLong={submitLatLong}/> : null}
+            {showList ? <SearchDropdown error={error} loading={loading} locations={locations} submitLatLong={submitLatLong}/> : null}
         </div>
     )
 }
 
 
 
-function SearchDropdown({error, locations, submitLatLong}: {error:string | undefined, locations:any[], submitLatLong:(locationData:any) => void}){
+function SearchDropdown({error, loading, locations, submitLatLong}: {error:string | undefined, loading:boolean, locations:any[], submitLatLong:(locationData:any) => void}){
     
 
     return(
         <div className="absolute flex flex-col justify-center bg-light-bg rounded-xl w-full h-fit min-h-14 left-0 top-13 z-50">
             <div className="my-2 px-2 ">
-            {
-                error ? <p className="my-auto px-2">{error}</p> 
+            {   
+                loading ? 
+                    <div>loading...</div> 
                 :
-                locations.map((location, i) => {
-                    return(
-                        <div className="flex w-full h-10 hover:bg-white/10 rounded-md"  key={i} onClick={() => submitLatLong(location)}>
-                            <p className="my-auto px-2">{`${location.name}, ${location.admin1}, ${location.country}`}</p>
-                        </div>
-                    )
-                })
+
+                    error ? <div className="flex flex-row pl-2"><OctagonAlert className=" text-red-600" /><p className="my-auto px-2 text-red-600">{error}</p></div> 
+                    :
+                    locations.map((location, i) => {
+                        return(
+                            <div className="flex w-full h-10 hover:bg-white/10 rounded-md"  key={i} onClick={() => submitLatLong(location)}>
+                                <p className="my-auto px-2">{`${location.name}, ${location.admin1}, ${location.country}`}</p>
+                            </div>
+                        )
+                    })
             }
             </div>
         </div>
