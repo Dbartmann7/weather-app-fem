@@ -112,7 +112,7 @@ function SearchDropdown({error, loading, locations, submitLatLong}: {error:strin
             <div className="my-2 px-2 ">
             {   
                 loading ? 
-                    <div>loading...</div> 
+                    <div className="px-2">Searching...</div> 
                 :
 
                     error ? <div className="flex flex-row pl-2"><OctagonAlert className=" text-red-600" /><p className="my-auto px-2 text-red-600">{error}</p></div> 

@@ -5,7 +5,7 @@ export async function GET(req:NextRequest):Promise<NextResponse>{
     let location = req.nextUrl.searchParams.get("location")
     const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`)
     // const res = await fetch("https://httpbin.org/status/500")
-    console.log(res)
+
     if(!res.ok){
   
         let message = ""
