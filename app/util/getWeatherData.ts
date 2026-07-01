@@ -1,6 +1,6 @@
 import { cacheLife } from "next/cache";
 import { fetchWeatherApi } from "openmeteo";
-import { DailyWeatherData, HourlyWeatherData, UnitPreferences, WeatherData } from "./types";
+import { DailyWeatherData, HourlyWeatherData, UnitPreferences, WeatherData, WrappedResponse } from "./types";
 
 let days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 
@@ -43,8 +43,9 @@ const convertHourObjToArr: (data:any, utcOffsetSeconds:number) => HourlyWeatherD
     return result
 }
 
-export const getWeatherData: (lat:number, long:number, name:string, country:string, preferences?:UnitPreferences) => Promise<WeatherData> = async (lat:number, long:number, name:string, country:string) => {
+export const getWeatherData: (lat:number, long:number, name:string, country:string) => Promise<WrappedResponse> = async (lat:number, long:number, name:string, country:string) => {
     "use cache"
+
     const params = {
         latitude: lat,
         longitude: long,
@@ -58,6 +59,7 @@ export const getWeatherData: (lat:number, long:number, name:string, country:stri
     };
     const url = "https://api.open-meteo.com/v1/forecast";
     const responses = await fetchWeatherApi(url, params);
+    
 
     // Process first location. Add a for-loop for multiple locations or weather models
     const response = responses[0];
@@ -107,8 +109,11 @@ export const getWeatherData: (lat:number, long:number, name:string, country:stri
     //     `\nCurrent wind_speed_10m: ${weatherData.current.wind_speed_10m}`,
     //     `\nCurrent weather_code: ${weatherData.current.weather_code}`,
     // );
+    return {
+        ok:true,
+        data:weatherData
+    }
     console.log("\nHourly data:\n", weatherData.hourly)
     // console.log("\nDaily data:\n", weatherData.daily)
     cacheLife({revalidate:900})
-    return weatherData
 }

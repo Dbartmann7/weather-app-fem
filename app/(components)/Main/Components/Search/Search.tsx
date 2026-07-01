@@ -19,7 +19,6 @@ export default function Search(){
     const [loading, setLoading] = useState<boolean>(false)
     const router = useRouter()
 
-
     // close search results if user clicks outside
     let searchRef = useRef<HTMLDivElement | null>(null)
     useEffect(() => {
@@ -64,6 +63,7 @@ export default function Search(){
 
     return(
         <div className="flex flex-col justify-center w-full max-w-xl  sm:flex-row gap-3" ref={searchRef}>
+            
                 <SearchBar error={error} loading={loading} value={location} setValue={setLocation} submitLocation={submitLocation} submitLatLong={submitLatLong} locations={locationResults} showList={showList}/>
                 <button className="w-full h-12 px-6 rounded-xl bg-light-blue sm:max-w-fit" onClick={submitLocation}>
                     Search

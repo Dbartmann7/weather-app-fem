@@ -30,10 +30,10 @@ export type DailyWeatherData = {
   tempMin: number
 }
 
-export type LocationReturnType = {
+export type WrappedResponse = {
   ok:boolean
   error?:string
-  data:string[]
+  data:any
 }
 
 export type MenuItem = OptionType | SectionType
