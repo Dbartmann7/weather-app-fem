@@ -1,5 +1,4 @@
 import Main from "./(components)/Main/Main";
-
 import { getWeatherData } from "./util/getWeatherData";
 import { WeatherData } from "./util/types";
 
@@ -8,7 +7,7 @@ export default async function Page({
 }: {
   searchParams: { lat?: number; long?: number; name?:string; country?:string };
 }) {
-  throw new Error("We couldn't connect to the server (API error).")
+ 
   let {lat, long, name, country} = await searchParams
   let weatherData: WeatherData | null = null;
   

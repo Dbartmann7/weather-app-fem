@@ -2,6 +2,8 @@
 
 import Image from "next/image"
 import ErrorImg from "@/public/images/icon-error.svg"
+import RetryImg from "@/public/images/icon-retry.svg"
+import { UtilBtn } from "./util/Components/UtilBtn";
 
 const Error = ({
   error,
@@ -15,7 +17,7 @@ const Error = ({
       <Image src={ErrorImg} alt="Drop" className="w-10"/>
       <h1 className="font-mono font-bold">Something Went Wrong</h1>
       <p className="w-4/5 text-light">{`${error.message} Please try again in a few moments`}</p>
-      <button onClick={() => reset()}>Retry</button>
+      <UtilBtn logo={RetryImg} title={"Retry"} clickFn={() => reset()}/>
     </div>
   );
 }
