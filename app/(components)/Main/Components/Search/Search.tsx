@@ -11,7 +11,9 @@ import { OctagonAlert } from "lucide-react"
 
 
 export default function Search(){
-    
+    type DisplayState = "ACTIVE" | "IDLE" | "ERROR" | "LOADING"
+    // TODO: look into combining loading, error, active, idle into one state
+    const [displayState, setDisplayState] = useState<DisplayState>("IDLE")
     const [locationResults, setLocationResults] = useState<string[]>([]);
     const [location, setLocation] = useState<string>("")
     const [showList, setShowList] = useState<boolean>(false)
@@ -40,9 +42,7 @@ export default function Search(){
         setShowList(true)
         setLoading(true)
         const res = await getLocationsData(location)
-        if(!res.error && res.data.length === 0){
-            setError("No search results found!")
-        }else{
+        if(res.error){
             setError(res.error)
         }
         setLoading(false)        
@@ -58,7 +58,7 @@ export default function Search(){
         params.set("long", locationData.longitude)
         params.set("name", locationData.name)
         params.set("country", locationData.country)
-        router.push(`?${params.toString()}`)
+        router.replace(`?${params.toString()}`)
     }
 
     return(

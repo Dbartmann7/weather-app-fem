@@ -5,7 +5,8 @@ export async function GET(req:NextRequest):Promise<NextResponse>{
     let location = req.nextUrl.searchParams.get("location")
     const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${location}&count=10&language=en&format=json`)
     // const res = await fetch("https://httpbin.org/status/500")
-
+    
+    // if location api returns an error
     if(!res.ok){
   
         let message = ""
@@ -25,9 +26,17 @@ export async function GET(req:NextRequest):Promise<NextResponse>{
 
     let data = await res.json()
 
+    if(!data.results){
+        return NextResponse.json({
+            ok:false,
+            data:[],
+            error:"No search results found!"
+        })
+    }
+
     return NextResponse.json({
         ok:true,
-        data:data.results || [],
+        data:data.results
        
     })
 }
