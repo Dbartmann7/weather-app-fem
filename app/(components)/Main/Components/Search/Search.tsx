@@ -6,13 +6,14 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { getLocationsData } from "@/app/util/getLocationsData"
 import { OctagonAlert } from "lucide-react"
+import { LocationData } from "@/app/util/types"
 
 type DisplayState = "ACTIVE" | "IDLE" | "ERROR" | "LOADING"
 
 type SearchState = {status:"IDLE"}
                 |  {status:"LOADING"}
                 |  {status:"ERROR", error:string}
-                |  {status:"ACTIVE", locationResults:string[]}
+                |  {status:"ACTIVE", locationResults:LocationData[]}
                 
 let shouldShowList = (displayState:DisplayState) => {
     return ["ACTIVE", "ERROR", "LOADING"].includes(displayState)
@@ -54,7 +55,7 @@ export default function Search(){
 
     const submitLatLong = (locationData:any) => {
         setSearchState({status:"IDLE"})
-        setLocation(`${locationData.name}, ${locationData.admin1}`)
+        setLocation(`${locationData.name}, ${locationData.country_code}`)
         let params = new URLSearchParams()
         params.set("lat", locationData.latitude)
         params.set("long", locationData.longitude)
@@ -97,7 +98,7 @@ function SearchBar({searchState, value, setValue, submitLocation, submitLatLong}
                 onKeyDown={(e) => {if(e.key === 'Enter') submitLocation()}}
             />
 
-            {shouldShowList(searchState.status) ? <SearchDropdown searchState={searchState} submitLatLong={submitLatLong}/> : null}
+            {shouldShowList(searchState.status) && <SearchDropdown searchState={searchState} submitLatLong={submitLatLong}/>}
         </div>
     )
 }
@@ -117,13 +118,13 @@ function SearchDropdown({searchState, submitLatLong}: {searchState:SearchState, 
 
                     searchState.status === "ERROR"  ? <div className="flex flex-row pl-2"><OctagonAlert className=" text-red-600" /><p className="my-auto px-2 text-red-600">{searchState.error}</p></div> 
                     :
-                    searchState.status === "ACTIVE" ? searchState.locationResults.map((location, i) => {
+                    searchState.status === "ACTIVE" && searchState.locationResults.map((location, i) => {
                         return(
                             <div className="flex w-full h-10 hover:bg-white/10 rounded-md"  key={i} onClick={() => submitLatLong(location)}>
-                                <p className="my-auto px-2">{`${location.name}, ${location.admin1}, ${location.country}`}</p>
+                                <p className="my-auto px-2">{`${location.name}, ${location.admin1}, ${location.country_code}`}</p>
                             </div>
                         )
-                    }): null
+                    })
 
             }
             </div>
