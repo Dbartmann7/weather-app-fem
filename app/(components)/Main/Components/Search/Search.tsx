@@ -53,7 +53,7 @@ export default function Search(){
         }
     }
 
-    const submitLatLong = (locationData:any) => {
+    const submitLatLong = (locationData:LocationData) => {
         setSearchState({status:"IDLE"})
         setLocation(`${locationData.name}, ${locationData.country_code}`)
         let params = new URLSearchParams()
