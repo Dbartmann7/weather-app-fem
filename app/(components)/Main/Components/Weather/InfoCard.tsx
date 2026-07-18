@@ -17,3 +17,15 @@ export default function InfoCard({label, value, unit, className=""} : InfoCardPr
         </div>
     )
 }
+
+export const InfoCardSkeleton = ({label}:{label:string}) => {
+    
+    return(
+        <div className={` bg-light-bg border border-border-color rounded-xl aspect-4/3 w-full h-full px-4 py-4`}>
+            <div className="flex flex-col justify-between h-full">
+                <h3 className="text-gray-400 wrap-break-word">{label}</h3>
+                
+            </div>
+        </div>
+    )
+}

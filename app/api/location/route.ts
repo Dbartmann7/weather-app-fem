@@ -33,7 +33,7 @@ export async function GET(req:NextRequest):Promise<NextResponse>{
             error:"No search results found!"
         })
     }
-
+    console.log(data.results)
     return NextResponse.json({
         ok:true,
         data:data.results

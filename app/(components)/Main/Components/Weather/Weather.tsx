@@ -1,17 +1,20 @@
-import { UnitPreferences, WeatherData } from "@/app/util/types";
-import DailyForecast from "./DailyForecast";
-import HourlyForecast from "./HourlyForecast";
+import { WeatherSearchParams } from "@/app/util/types";
+import DailyForecast, { DailyForecastSkeleton } from "./DailyForecast";
+import HourlyForecast, { HourlyForecastSkeleton } from "./HourlyForecast";
 
-import CurrentDisplay from "./CurrentDisplay";
+import CurrentDisplay, { CurrentDisplaySkeleton } from "./CurrentDisplay";
+import { getWeatherData } from "@/app/util/getWeatherData";
 
+type WeatherProps = {
+    searchParams:WeatherSearchParams
+}
 
+const Weather = async ({searchParams}:WeatherProps) =>{
 
+    const {lat, long, name, country} = {...searchParams}
 
-
-
-export default async function Weather({data}:{data:WeatherData}){
-
-    
+    const response = await getWeatherData(lat, long, name, country)
+    const data = response.data
      
     return(
         <div className="flex flex-col xl:flex-row w-full gap-8">
@@ -25,3 +28,22 @@ export default async function Weather({data}:{data:WeatherData}){
         </div>
     )
 }
+
+export const WeatherSkeleton = () => {
+
+    return (
+        <div className="flex flex-col xl:flex-row w-full gap-8">
+            <div className="flex flex-col gap-8 w-full">
+                <div className="flex flex-col sm:flex-row md:flex-col gap-4">
+                    <CurrentDisplaySkeleton/>
+                </div>
+                <DailyForecastSkeleton/>
+            </div>
+            <HourlyForecastSkeleton/>
+        
+        </div>
+    )
+    // 688
+}
+
+export default Weather

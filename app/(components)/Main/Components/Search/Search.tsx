@@ -113,7 +113,7 @@ function SearchDropdown({searchState, submitLatLong}: {searchState:SearchState, 
             <div className="my-2 px-2 ">
             {   
                 searchState.status === "LOADING" ? 
-                    <div className="px-2">Searching...</div> 
+                    <div className="px-2">Search in progress...</div> 
                 :
 
                     searchState.status === "ERROR"  ? <div className="flex flex-row pl-2"><OctagonAlert className=" text-red-600" /><p className="my-auto px-2 text-red-600">{searchState.error}</p></div> 

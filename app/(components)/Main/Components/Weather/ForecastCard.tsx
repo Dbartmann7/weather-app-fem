@@ -31,3 +31,12 @@ export default function ForecastCard({dayData}:ForecastCardProps){
         </div>
     )
 }
+
+export const ForecastCardSkeleton = () => {
+
+    return (
+        <div className="flex flex-col justify-around px-3 py-3 bg-light-bg border border-border-color rounded-xl items-center w-25 aspect-2/3">
+            
+        </div>
+    )
+}

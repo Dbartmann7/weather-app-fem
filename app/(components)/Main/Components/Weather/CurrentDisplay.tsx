@@ -7,7 +7,7 @@ import { dateToString } from '@/app/util/DateConversions'
 import { TempDisplay } from './TempDisplay'
 import InfoCard from './InfoCard'
 import { precip, speed, temp } from '@/app/util/UnitConversions'
-import { CurrentInfoCards } from './CurrentInfoCards'
+import { CurrentInfoCards, CurrentInfoCardsSkeleton } from './CurrentInfoCards'
 import { WCtoIcon } from '@/public/images/WeatherCode'
 
 
@@ -25,9 +25,9 @@ export default function CurrentDisplay({data}:CurrentDisplayProps){
 
     return(
         <div className="flex flex-col sm:flex-row md:flex-col gap-4">
-            <div className="flex relative">
+            <div className="flex relative h-72">
                 <Image src={TempBg} alt={"temp"} className='md:hidden sm:min-w-85.75 -z-50'/>
-                <Image  src={TempBgLarge} alt={"temp"} className='md:block hidden  min-h-72 -z-50'/>
+                <Image  src={TempBgLarge} alt={"temp"} className='md:block hidden  -z-50'/>
                 <div className='flex flex-col md:flex-row justify-between items-center absolute h-full w-full px-8 py-10'>
                     <div className='min-w-69.75 flex flex-col items-center md:items-baseline'>
                         <h2 className='font-sans font-bold text-[1.75rem]'>{`${data.name}, ${data.country}`}</h2>
@@ -42,4 +42,17 @@ export default function CurrentDisplay({data}:CurrentDisplayProps){
             <CurrentInfoCards data={data}/>
         </div>
     )
+}
+
+export const CurrentDisplaySkeleton = () => {
+    // 440.81
+    return(
+        <div className='flex flex-col gap-4'>
+            <div className="flex flex-col sm:flex-row md:flex-col gap-4 w-85.75 h-72  md:w-199 bg-light-bg rounded-2xl border border-border-color">
+
+            </div>
+            <CurrentInfoCardsSkeleton/>
+        </div>
+    )
+    
 }

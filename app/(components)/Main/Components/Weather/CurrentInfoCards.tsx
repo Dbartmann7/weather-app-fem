@@ -1,7 +1,7 @@
 "use client"
 
 import { precip, speed, temp } from "@/app/util/UnitConversions"
-import InfoCard from "./InfoCard"
+import InfoCard, { InfoCardSkeleton } from "./InfoCard"
 import { CurrentWeatherData } from "@/app/util/types"
 import { use } from "react"
 import { UnitContext } from "@/app/util/UnitContext"
@@ -26,6 +26,17 @@ export const CurrentInfoCards = ({data}:CurrentInfoCardsProps) => {
             <InfoCard label="Humidity" value={Math.floor(data.relative_humidity_2m)} unit="%"/>
             <InfoCard label="Wind" value={Math.floor(speed(windSpeed, unitContext.preferences))} unit={" " + unitContext.preferences.speed}/>
             <InfoCard label="Precipitation" value={Math.floor(precip(precipMm, unitContext.preferences))} unit={" " + unitContext.preferences.precip}/>
+        </div>
+    )
+}
+
+export const CurrentInfoCardsSkeleton = () => {
+    return (
+        <div className="grid grid-cols-2 gap-4 w-full md:flex md:flex-row">
+            <InfoCardSkeleton label="Feels Like"/>
+            <InfoCardSkeleton label="Humidity"/>
+            <InfoCardSkeleton label="Wind"/>
+            <InfoCardSkeleton label="Precipitation"/>
         </div>
     )
 }

@@ -6,7 +6,7 @@ import RainIcon from "@/public/images/icon-rain.webp"
 import { HourlyWeatherData, OptionType } from "@/app/util/types"
 import { dateToDay, dateToHour, getDayNum } from "@/app/util/DateConversions"
 import { use, useEffect, useState } from "react"
-import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
+import { Dropdown, DropdownSkeleton } from "@/app/util/Components/Dropdown/Dropdown"
 import { UnitContext } from "@/app/util/UnitContext"
 import { temp } from "@/app/util/UnitConversions"
 import { WCtoIcon } from "@/public/images/WeatherCode"
@@ -23,6 +23,15 @@ function HourInfoCard({data}:{data:HourlyWeatherData}){
             <Image className="max-h-full w-auto" src={WCtoIcon(data.weatherCode) ?? ""} alt={""}/>
             <p className="mr-auto">{dateToHour(data.time)}</p>
             <p>{Math.floor(temp(data.temp, unitContext.preferences))}</p>
+        </div>
+    )
+}
+
+const HourInfoCardSkeleton = () => {
+
+    return(
+        <div className="flex w-full gap-2 min-h-14 py-2 px-4 items-center bg-white/5 rounded-md border border-border-color">
+            
         </div>
     )
 }
@@ -96,6 +105,25 @@ export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
                         
                         return <HourInfoCard key={i} data={hour}/>
                     })
+                }
+            </div>
+        </div>
+    )
+}
+
+
+export const HourlyForecastSkeleton = () => {
+    return( 
+        <div className="flex flex-col w-full max-w-200 xl:max-w-93 p-6 h-167 bg-light-bg rounded-2xl border border-border-color relative ">
+            <div className="flex flex-row items-center pb-4">
+                <h3 className="mr-auto">Hourly Forecast</h3>
+                <DropdownSkeleton/>
+            </div>
+            <div className="flex flex-col  gap-4 overflow-y-scroll h-full">
+                {
+                    Array.from({length:24}, (_, i) => (
+                        <HourInfoCardSkeleton/>
+                    ))
                 }
             </div>
         </div>

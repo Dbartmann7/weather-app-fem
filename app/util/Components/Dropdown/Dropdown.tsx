@@ -65,3 +65,17 @@ export function Dropdown({title, logo, options=[], closeAfterSelect=false}: Drop
     )
 }
 
+
+export const DropdownSkeleton = () => {
+
+    return (
+        
+        <div className="relative flex w-fit gap-2 h-10 py-2 px-4 bg-white/10 hover:bg-white/20 rounded-md">
+           
+            <p>—</p>
+            <Image src={DropdownIcon} alt="Drop"/>
+        </div>
+        
+    )
+}
+

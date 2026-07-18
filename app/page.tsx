@@ -9,25 +9,21 @@ export default async function Page({
 }) {
  
   let {lat, long, name, country} = await searchParams
-  let weatherData: WeatherData | null = null;
+ 
   
-  // show Edinbugh weather if no lat or log is set
+  // show Edinbugh weather if no search params exist
   if(!lat || !long || !name || !country){
     lat = 55.9520
     long = -3.19648
     name = "Edinburgh"
     country = "United Kingdom"
   }
-
-  
-    weatherData = await getWeatherData(lat, long, name, country) 
-  
   
 
   return (
 
     <div className="flex flex-col text-white">
-      <Main weatherData={weatherData}/>
+      <Main searchParams={{lat:lat, long:long, name:name, country:country}}/>
     </div>
     
   );

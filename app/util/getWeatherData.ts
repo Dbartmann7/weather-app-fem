@@ -3,7 +3,7 @@ import { fetchWeatherApi } from "openmeteo";
 import { DailyWeatherData, HourlyWeatherData, UnitPreferences, WeatherData, WrappedResponse } from "./types";
 
 let days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
-
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const convertDayObjToArr: (data:any, utcOffsetSeconds:number) => DailyWeatherData[] = (data:any, utcOffsetSeconds:number) => {
     let result = []
     let weatherCode:number[] =  data.variables(0)!.valuesArray() ?? []
@@ -44,8 +44,9 @@ const convertHourObjToArr: (data:any, utcOffsetSeconds:number) => HourlyWeatherD
 }
 
 export const getWeatherData: (lat:number, long:number, name:string, country:string) => Promise<WrappedResponse> = async (lat:number, long:number, name:string, country:string) => {
-    "use cache"
+    // "use cache"
 
+    await sleep(10000000)
     const params = {
         latitude: lat,
         longitude: long,
