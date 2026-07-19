@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 
-import RainIcon from "@/public/images/icon-rain.webp"
 import { HourlyWeatherData, OptionType } from "@/app/util/types"
 import { dateToDay, dateToHour, getDayNum } from "@/app/util/DateConversions"
 import { use, useEffect, useState } from "react"
@@ -94,12 +93,12 @@ export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
     }, [selectedDay])
 
     return( 
-        <div className="flex flex-col w-full max-w-200 xl:max-w-93 p-6 max-h-167 bg-light-bg rounded-2xl border border-border-color relative ">
-            <div className="flex flex-row items-center pb-4">
+        <div className="flex flex-col w-full max-w-200 xl:max-w-93 py-6 max-h-162 bg-light-bg rounded-2xl border border-border-color relative ">
+            <div className="flex flex-row items-center pb-4 px-6">
                 <h3 className="mr-auto">Hourly Forecast</h3>
                 <Dropdown title={dateToDay(selectedDay)} options={newOptions} closeAfterSelect={true}/>
             </div>
-            <div className="flex flex-col  gap-4 overflow-y-scroll h-full">
+            <div className="flex flex-col gap-4 overflow-y-scroll h-full px-6">
                 {
                     data?.slice(0 + 24*dayOffset, 24 + 24*dayOffset).map((hour, i) => {
                         
@@ -114,12 +113,12 @@ export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
 
 export const HourlyForecastSkeleton = () => {
     return( 
-        <div className="flex flex-col w-full max-w-200 xl:max-w-93 p-6 h-167 bg-light-bg rounded-2xl border border-border-color relative ">
-            <div className="flex flex-row items-center pb-4">
+        <div className="flex flex-col w-full max-w-200 xl:max-w-93 py-6 max-h-162 bg-light-bg rounded-2xl border border-border-color relative ">
+            <div className="flex flex-row items-center pb-4 px-6">
                 <h3 className="mr-auto">Hourly Forecast</h3>
                 <DropdownSkeleton/>
             </div>
-            <div className="flex flex-col  gap-4 overflow-y-scroll h-full">
+            <div className="flex flex-col gap-4 overflow-y-scroll h-full px-6">
                 {
                     Array.from({length:24}, (_, i) => (
                         <HourInfoCardSkeleton/>
