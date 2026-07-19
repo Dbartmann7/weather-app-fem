@@ -1,16 +1,16 @@
 'use client'
 import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
-import { MenuItem} from "@/app/util/types"
+import { MenuItem, UnitPreferences} from "@/app/util/types"
 import { UnitContext } from "@/app/util/UnitContext"
 import UnitsIcon from "@/public/images/icon-units.svg"
 import { use, useEffect, useState } from "react"
 
 export function UnitsDropdown(){
-
+   
     const unitContext = use(UnitContext)
     const [overallLabel, setOverallLabel] = useState<"Switch to Imperial" | "Switch to Metric">("Switch to Imperial")
     const [overallValue, setOverallValue] = useState<"imperial" | "metric">("imperial")
-
+ 
     useEffect(() => {
         // switch overall change if user individually sets all units to metric/imperial
         if(unitContext){
@@ -102,7 +102,7 @@ export function UnitsDropdown(){
         {
             label:"Temperature",
             type:"section",
-            
+            selected:unitContext?.preferences.temp,
             options:[
                 {
                     label:"Celsius (°C)",
@@ -122,7 +122,7 @@ export function UnitsDropdown(){
         {
             label:"Wind Speed",
             type:"section",
-          
+            selected:unitContext?.preferences.speed,
             options:[
                 {
                     label:"km/h",
@@ -141,7 +141,7 @@ export function UnitsDropdown(){
         {
             label:"Precipitation",
             type:"section",
-        
+            selected:unitContext?.preferences.precip,
             options:[
                 {
                     label:"Millimeters (mm)",

@@ -5,10 +5,11 @@ import tick from "@/public/images/icon-checkmark.svg"
 
 type OptionProps = {
     data:OptionType,
-    close: () => void
+    close: () => void,
+    isSelected?:boolean
 }
 
-export const Option = ({data, close}:OptionProps) => {
+export const Option = ({data, close, isSelected=false}:OptionProps) => {
 
     const handleSubmit = () => {
         close()
@@ -20,7 +21,7 @@ export const Option = ({data, close}:OptionProps) => {
             <p className="my-auto px-2">{
                data.label
             }</p>
-            {/* {isSelected ? <Image className="ml-auto" src={tick} alt={"tick"}/> : null}  */}
+            {isSelected ? <Image className="ml-auto" src={tick} alt={"tick"}/> : null} 
         </div>
     )
 }
