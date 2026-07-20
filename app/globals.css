@@ -27,7 +27,8 @@ html{
   --font-mono: var(--font-bricolage-grotesque);
 
   --breakpoint-xs: 27rem;
-  
+
+  --breakpoint-cmd: 53.25rem;
 }
 
 @layer base{

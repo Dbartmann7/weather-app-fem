@@ -25,11 +25,11 @@ export default function CurrentDisplay({data}:CurrentDisplayProps){
    
 
     return(
-        <div className="flex flex-col sm:flex-row md:flex-col gap-4">
+        <div className="max-w-200 flex flex-col sm:flex-row cmd:flex-col gap-4">
             <div className="flex relative h-72">
-                <Image src={TempBg} alt={"temp"} className='md:hidden sm:min-w-85.75 -z-50'/>
-                <Image  src={TempBgLarge} alt={"temp"} className='md:block hidden  -z-50'/>
-                <div className='flex flex-col md:flex-row justify-between items-center absolute h-full w-full px-8 py-10'>
+                <Image src={TempBg} alt={"temp"} className='cmd:hidden sm:min-w-85.75 -z-50'/>
+                <Image  src={TempBgLarge} alt={"temp"} className='hidden cmd:block  -z-50'/>
+                <div className='flex flex-col w-85.75 cmd:flex-row cmd:w-full justify-between items-center absolute h-full px-8 py-10'>
                     <div className='min-w-69.75 flex flex-col items-center md:items-baseline'>
                         <h2 className='font-sans font-bold text-[1.75rem]'>{`${data.name}, ${data.country}`}</h2>
                         <h3 className='font-sans text-gray-400 text-lg'>{dateToString(data.time)}</h3>
@@ -46,7 +46,7 @@ export default function CurrentDisplay({data}:CurrentDisplayProps){
 }
 
 export const CurrentDisplaySkeleton = () => {
-    // 440.81
+
     return(
         <div className='flex flex-col gap-4'>
             <div className="flex flex-col items-center justify-center w-85.75 h-72 md:w-199 bg-light-bg rounded-2xl border border-border-color">
