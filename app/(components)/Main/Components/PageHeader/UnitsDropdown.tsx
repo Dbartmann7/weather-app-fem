@@ -1,6 +1,6 @@
 'use client'
 import { Dropdown } from "@/app/util/Components/Dropdown/Dropdown"
-import { MenuItem, UnitPreferences} from "@/app/util/types"
+import { MenuItem} from "@/app/util/types"
 import { UnitContext } from "@/app/util/UnitContext"
 import UnitsIcon from "@/public/images/icon-units.svg"
 import { use, useEffect, useState } from "react"

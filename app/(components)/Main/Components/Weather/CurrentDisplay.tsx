@@ -9,6 +9,7 @@ import InfoCard from './InfoCard'
 import { precip, speed, temp } from '@/app/util/UnitConversions'
 import { CurrentInfoCards, CurrentInfoCardsSkeleton } from './CurrentInfoCards'
 import { WCtoIcon } from '@/public/images/WeatherCode'
+import { Loader } from 'lucide-react'
 
 
 type CurrentDisplayProps = {
@@ -48,8 +49,11 @@ export const CurrentDisplaySkeleton = () => {
     // 440.81
     return(
         <div className='flex flex-col gap-4'>
-            <div className="flex flex-col sm:flex-row md:flex-col gap-4 w-85.75 h-72  md:w-199 bg-light-bg rounded-2xl border border-border-color">
-
+            <div className="flex flex-col items-center justify-center w-85.75 h-72 md:w-199 bg-light-bg rounded-2xl border border-border-color">
+                <div className='flex flex-col gap-3'>
+                    <Loader className='self-center'/>
+                    Loading...
+                </div>
             </div>
             <CurrentInfoCardsSkeleton/>
         </div>

@@ -21,7 +21,6 @@ let shouldShowList = (displayState:DisplayState) => {
 
 export default function Search(){
     
-    // TODO: look into combining loading, error, active, idle into one state
     const [searchState, setSearchState] = useState<SearchState>({status:"IDLE"})
     const [location, setLocation] = useState<string>("")
     const router = useRouter()

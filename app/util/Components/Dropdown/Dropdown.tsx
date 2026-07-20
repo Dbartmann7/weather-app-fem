@@ -5,7 +5,7 @@ import { RefObject, useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import DropdownIcon from "@/public/images/icon-dropdown.svg"
 import { DropdownMenu } from "./DropdownMenu"
-import { MenuItem, OptionType } from "../../types"
+import { MenuItem } from "../../types"
 
 type DropdownProps = {
     title:string

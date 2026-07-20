@@ -42,6 +42,7 @@ export type SectionType = {
   type:"section",
   label:string,
   options: OptionType[]
+  selected?:string
 }
 
 export type OptionType = {
@@ -49,7 +50,6 @@ export type OptionType = {
   label:string
   onSelect: (...args:any[]) => void
   value?:string
-  selected?:boolean
 }
 
 export type UnitPreferences = {
@@ -75,21 +75,21 @@ export type LocationData = {
   admin2?:string
 }
 
-let test = {
-    id: 5722064,
-    name: 'Dallas',
-    latitude: 44.91928,
-    longitude: -123.31705,
-    elevation: 99,
-    feature_code: 'PPLA2',
-    country_code: 'US',
-    admin1_id: 5744337,
-    admin2_id: 5746351,
-    timezone: 'America/Los_Angeles',
-    population: 15277,
-    postcodes: [ '97338' ],
-    country_id: 6252001,
-    country: 'United States',
-    admin1: 'Oregon',
-    admin2: 'Polk'
-  }
+// let test = {
+//     id: 5722064,
+//     name: 'Dallas',
+//     latitude: 44.91928,
+//     longitude: -123.31705,
+//     elevation: 99,
+//     feature_code: 'PPLA2',
+//     country_code: 'US',
+//     admin1_id: 5744337,
+//     admin2_id: 5746351,
+//     timezone: 'America/Los_Angeles',
+//     population: 15277,
+//     postcodes: [ '97338' ],
+//     country_id: 6252001,
+//     country: 'United States',
+//     admin1: 'Oregon',
+//     admin2: 'Polk'
+//   }

@@ -46,7 +46,7 @@ const convertHourObjToArr: (data:any, utcOffsetSeconds:number) => HourlyWeatherD
 export const getWeatherData: (lat:number, long:number, name:string, country:string) => Promise<WrappedResponse> = async (lat:number, long:number, name:string, country:string) => {
     // "use cache"
 
-    await sleep(10000000)
+    // await sleep(5000)
     const params = {
         latitude: lat,
         longitude: long,
