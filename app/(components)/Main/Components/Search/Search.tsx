@@ -64,10 +64,10 @@ export default function Search(){
     }
 
     return(
-        <div className="flex flex-col justify-center w-full max-w-xl  sm:flex-row gap-3" ref={searchRef}>
+        <div className="flex flex-col justify-center w-full max-w-xl  csm:flex-row gap-3" ref={searchRef}>
             
                 <SearchBar searchState={searchState} value={location} setValue={setLocation} submitLocation={submitLocation} submitLatLong={submitLatLong}/>
-                <button className="w-full h-12 px-6 rounded-xl bg-light-blue sm:max-w-fit" onClick={submitLocation}>
+                <button className="w-full h-12 px-6 rounded-xl bg-light-blue csm:max-w-fit" onClick={submitLocation}>
                     Search
                 </button>
         </div>

@@ -1,5 +1,5 @@
 'use client'
-import { RefObject } from "react"
+
 import { Option } from "./Option"
 
 import { MenuItem } from "../../types"
