@@ -49,20 +49,20 @@ export function Dropdown({title, logo, options=[], closeAfterSelect=false}: Drop
     }
 
     return (
-        <div className="relative">
+        <div className="relative" ref={menuRef}>
             <div className="relative flex w-fit gap-2 h-10 py-2 px-4 bg-white/10 hover:bg-white/20 rounded-md" onClick={toggleDropdown}>
                 {logo ? <Image src={logo} alt={"logo"}/> : null}
                 <p>{title}</p>
                 <Image src={DropdownIcon} alt="Drop" className={isMenuVisible ? 'rotate-180' : ""}/>
             </div>
             {
-                isMenuVisible ? <DropdownMenu ref={menuRef} options={options} close={close} className="border border-border-color w-52 right-0 top-12"/>
+                isMenuVisible ? <DropdownMenu options={options} close={close} className="border border-border-color w-52 right-0 top-12"/>
                 :
                 null
 
             }
         </div>
-    )
+    ) 
 }
 
 

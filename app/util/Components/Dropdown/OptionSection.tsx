@@ -14,7 +14,7 @@ export const OptionSection = ({data, close}:OptionSectionProps) => {
             <SectionTitle title={data.label} />
             {
                 data.options?.map((option, i) => {
-                    return <Option data={option} close={close} isSelected={option.value===data.selected}/> 
+                    return <Option data={option} close={close} isSelected={option.value===data.selected} key={i}/> 
                 } )
             }
         </div>
