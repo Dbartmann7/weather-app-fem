@@ -21,7 +21,7 @@ export const CurrentInfoCards = ({data}:CurrentInfoCardsProps) => {
     const windSpeed = data.wind_speed_10m ?? 0
 
     return (
-        <div className="grid grid-cols-2 gap-4 w-full cmd:flex cmd:flex-row">
+        <div className="relative grid grid-cols-2 grid-rows-[1fr,1fr] gap-6 w-full max-h-72 cmd:flex cmd:h-29 cmd:flex-row">
             <InfoCard label="Feels Like" value={Math.floor(temp(feelsTemp, unitContext.preferences))} unit="°"/>
             <InfoCard label="Humidity" value={Math.floor(data.relative_humidity_2m)} unit="%"/>
             <InfoCard label="Wind" value={Math.floor(speed(windSpeed, unitContext.preferences))} unit={" " + unitContext.preferences.speed}/>

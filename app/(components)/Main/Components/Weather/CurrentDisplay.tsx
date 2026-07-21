@@ -25,7 +25,7 @@ export default function CurrentDisplay({data}:CurrentDisplayProps){
    
 
     return(
-        <div className="max-w-200 flex flex-col sm:flex-row cmd:flex-col gap-4">
+        <div className="max-w-200 flex flex-col csm:flex-row cmd:flex-col gap-6">
             <div className="flex relative h-72">
                 <Image src={TempBg} alt={"temp"} className='cmd:hidden sm:min-w-85.75 -z-50'/>
                 <Image  src={TempBgLarge} alt={"temp"} className='hidden cmd:block  -z-50'/>

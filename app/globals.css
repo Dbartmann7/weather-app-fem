@@ -28,6 +28,7 @@ html{
 
   --breakpoint-xs: 27rem;
 
+  --breakpoint-csm: 47.625rem;
   --breakpoint-cmd: 53.25rem;
 }
 
