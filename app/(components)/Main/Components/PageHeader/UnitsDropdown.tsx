@@ -6,22 +6,34 @@ import UnitsIcon from "@/public/images/icon-units.svg"
 import { use, useEffect, useState } from "react"
 
 export function UnitsDropdown(){
-   
+    
+    type OverallState = {
+        label:"Switch to Imperial" | "Switch to Metric",
+        value: "imperial" | "metric"
+    }
+
     const unitContext = use(UnitContext)
-    const [overallLabel, setOverallLabel] = useState<"Switch to Imperial" | "Switch to Metric">("Switch to Imperial")
-    const [overallValue, setOverallValue] = useState<"imperial" | "metric">("imperial")
+
+    const [overallState, setOverallState] = useState<OverallState>({
+        label:"Switch to Imperial",
+        value:"imperial"
+    })
  
     useEffect(() => {
         // switch overall change if user individually sets all units to metric/imperial
         if(unitContext){
             let {temp, precip, speed} = unitContext.preferences
-            if(temp === "c" && precip === "mm" && speed === "km/h" && overallValue === "metric"){
-                setOverallLabel("Switch to Imperial")
-                setOverallValue("imperial")
+            if(temp === "c" && precip === "mm" && speed === "km/h" && overallState.value === "metric"){
+                setOverallState({
+                    label:"Switch to Imperial",
+                    value:"imperial"
+                })
             }
-            if(temp === "f" && precip === "in" && speed === "mph" && overallValue === "imperial"){
-                setOverallLabel("Switch to Metric")
-                setOverallValue("metric")
+            if(temp === "f" && precip === "in" && speed === "mph" && overallState.value === "imperial"){
+                setOverallState({
+                    label:"Switch to Metric",
+                    value:"metric"
+                })
             }
 
         }
@@ -30,24 +42,27 @@ export function UnitsDropdown(){
     }, [unitContext?.preferences])
 
     const setOverall = (value:"metric" | "imperial") => {
-        unitContext?.setPreferences(() => {
-            if(value === "metric"){
-                setOverallLabel("Switch to Imperial")
-                setOverallValue("imperial")
+        if(value === "metric"){
+           
+            unitContext?.setPreferences(() => {
                 return {
                     temp:"c",
                     precip:"mm",
                     speed:"km/h"
-                }
-            }
-            setOverallLabel("Switch to Metric")
-            setOverallValue("metric")
-            return {
-                temp:"f",
-                precip:"in",
-                speed:"mph"
-            } 
-        })
+                } 
+            })
+        }
+
+        if(value === "imperial"){
+            unitContext?.setPreferences(() => {
+                return {
+                    temp:"f",
+                    precip:"in",
+                    speed:"mph"
+                } 
+            })
+        }
+        
     }
 
     const changeTemp = (value:"c" | "f") => {
@@ -83,20 +98,11 @@ export function UnitsDropdown(){
         })
     }
 
-    const isSelected = (value:string) => {
-        if(unitContext){
-            let {temp, precip, speed} = unitContext.preferences
-            if(temp === value || precip === value || speed === value) return true
-        }
-
-        return false
-    }
-
-    const newOptions: MenuItem[] = [
+    const options: MenuItem[] = [
         {
-            label:overallLabel,
+            label:overallState.label,
             type:"option",
-            value:overallValue,
+            value:overallState.value,
             onSelect:setOverall
         },
         {
@@ -161,7 +167,7 @@ export function UnitsDropdown(){
 
     return(
         <>
-            <Dropdown logo={UnitsIcon} title="Units" options={newOptions}/>
+            <Dropdown logo={UnitsIcon} title="Units" options={options}/>
         </>
     )
 }
