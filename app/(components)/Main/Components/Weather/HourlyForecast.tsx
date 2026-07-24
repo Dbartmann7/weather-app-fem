@@ -44,45 +44,20 @@ export default function HourlyForecast({data}:{data:HourlyWeatherData[]}){
     const handleSelect = (value:string) => {
         setSelectedDay(getDayNum(value))
     }
-    const newOptions:OptionType[] = [
-        {
+   
+    const newOptions:OptionType[] = []
+
+    // sort the dropdown options so the current day is first, then each future day is after
+    for(let i = 0; i<7; i++){
+        let offset = currentDay + i
+        if(offset >=7) offset %= 7
+        newOptions.push({
             type:"option",
-            label:"Monday",
-            value:"Monday",
+            label:dateToDay(offset),
+            value:dateToDay(offset),
             onSelect:handleSelect
-        }, 
-        {
-            type:"option",
-            label:"Tuesday",
-            value:"Tuesday",
-            onSelect:handleSelect
-        }, {
-            type:"option",
-            label:"Wednesday",
-            value:"Wednesday",
-            onSelect:handleSelect
-        }, {
-            type:"option",
-            label:"Thursday",
-            value:"Thursday",
-            onSelect:handleSelect
-        }, {
-            type:"option",
-            label:"Friday",
-            value:"Friday",
-            onSelect:handleSelect
-        }, {
-            type:"option",
-            label:"Saturday",
-            value:"Saturday",
-            onSelect:handleSelect
-        }, {
-            type:"option",
-            label:"Sunday",
-            value:"Sunday",
-            onSelect:handleSelect
-        }, 
-    ] 
+        })
+    }
     
     useEffect(() => {
         if(currentDay > selectedDay){
