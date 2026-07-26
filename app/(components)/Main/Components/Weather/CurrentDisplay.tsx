@@ -1,12 +1,9 @@
 import TempBg from '@/public/images/bg-today-small.svg'
 import TempBgLarge from "@/public/images/bg-today-large.svg"
-import SunnyIcon from '@/public/images/icon-sunny.webp'
 import Image from 'next/image'
 import { CurrentWeatherData } from '@/app/util/types'
 import { dateToString } from '@/app/util/DateConversions'
 import { TempDisplay } from './TempDisplay'
-import InfoCard from './InfoCard'
-import { precip, speed, temp } from '@/app/util/UnitConversions'
 import { CurrentInfoCards, CurrentInfoCardsSkeleton } from './CurrentInfoCards'
 import { WCtoIcon } from '@/public/images/WeatherCode'
 import { Loader } from 'lucide-react'
