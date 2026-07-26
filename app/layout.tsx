@@ -5,7 +5,6 @@ import "./globals.css";
 import UnitProvider from './util/UnitContext';
 import PageHeader from './(components)/Main/Components/PageHeader/PageHeader';
 import TestFooter from './(components)/Main/Components/TestFooter';
-import TestProvider from './util/TestContext';
 
 const dmSans = DM_Sans({
   subsets:["latin"],
@@ -34,13 +33,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.className} ${bricolageGrotesque.variable} flex flex-col p-5 pb-10 xl:pb-24`}>
-        <TestProvider>
-          <UnitProvider>  
-            <PageHeader/>
-            {children}
-            <TestFooter/>
-          </UnitProvider>
-        </TestProvider>
+        <UnitProvider>  
+          <PageHeader/>
+          {children}
+          <TestFooter/>
+        </UnitProvider>
       </body>
     </html>
   );

@@ -1,15 +1,34 @@
 "use client"
 
-import { TestState, useGetTest } from "@/app/util/TestContext"
+import Cookies from "js-cookie"
+
 import { Circle } from "lucide-react"
 import { CircleCheckBig } from "lucide-react"
+import { useEffect, useState } from "react"
 
 const TestFooter = () => {
 
-    const {testState, toggleTestValue} = useGetTest()
-    const settings:TestState[] = [
+    const [state, setState] = useState<string>("")
+    const settings:string[] = [
         "Loading", "Error"
     ]
+
+    useEffect(() => {
+        let setting = Cookies.get("setting")
+        if(setting) setState(setting) 
+    }, [])
+
+    useEffect(() => {
+        Cookies.set("setting", state || "", {expires:1/24})
+    }, [state])
+
+    const handleClick = (value:string) => {
+        setState((prev) => {
+            let newActive = ""
+            if(prev === value) return newActive
+            return value
+        })
+    }
 
 
     return (
@@ -19,7 +38,7 @@ const TestFooter = () => {
                     return (
                         <div className="flex flex-row gap-2">
                             <p>{setting}</p>
-                            {setting === testState ? <CircleCheckBig onClick={() => {toggleTestValue(setting)}}/> : <Circle onClick={() => {toggleTestValue(setting)}}/>}
+                            {setting === state ? <CircleCheckBig onClick={() => {handleClick(setting)}}/> : <Circle onClick={() => {handleClick(setting)}}/>}
                         </div> 
                     )
                 })
