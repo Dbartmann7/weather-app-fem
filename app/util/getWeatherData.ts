@@ -53,7 +53,7 @@ type getWeatherDataFn = (
 
 export const getWeatherDataLoadingMock:getWeatherDataFn = async (lat, long, name, country) => {
 
-    await sleep(5000)
+    await sleep(100000)
 
     const params = {
         latitude: lat,

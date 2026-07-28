@@ -45,9 +45,9 @@ const DemoFooter = () => {
         <div>
             <div className="w-full flex gap-10 justify-center pt-10 text-white">
                 {
-                    settings.map((setting) => {
+                    settings.map((setting, i) => {
                         return (
-                            <div className="flex flex-row gap-2">
+                            <div className="flex flex-row gap-2" key={i}>
                                 <p>{setting}</p>
                                 {setting === state ? <CircleCheckBig onClick={() => {handleClick(setting)}}/> : <Circle onClick={() => {handleClick(setting)}}/>}
                             </div> 

@@ -96,7 +96,7 @@ export const HourlyForecastSkeleton = () => {
             <div className="flex flex-col overflow-y-hidden gap-4 h-full px-6">
                 {
                     Array.from({length:24}, (_, i) => (
-                        <HourInfoCardSkeleton/>
+                        <HourInfoCardSkeleton key={i}/>
                     ))
                 }
             </div>
