@@ -41,7 +41,7 @@ export const WeatherSkeleton = () => {
     return (
         <div className="flex flex-col xl:flex-row w-full gap-8">
             <div className="flex flex-col gap-8 w-full">
-                <div className="flex flex-col sm:flex-row md:flex-col gap-4">
+                <div className="flex flex-col csm:flex-row md:flex-col gap-4">
                     <CurrentDisplaySkeleton/>
                 </div>
                 <DailyForecastSkeleton/>

@@ -32,7 +32,7 @@ export const CurrentInfoCards = ({data}:CurrentInfoCardsProps) => {
 
 export const CurrentInfoCardsSkeleton = () => {
     return (
-        <div className="grid grid-cols-2 gap-4 w-full md:flex md:flex-row">
+        <div className="grid grid-cols-2 grid-rows-[1fr,1fr] gap-6 w-full max-h-72 cmd:flex cmd:h-29 cmd:flex-row">
             <InfoCardSkeleton label="Feels Like"/>
             <InfoCardSkeleton label="Humidity"/>
             <InfoCardSkeleton label="Wind"/>

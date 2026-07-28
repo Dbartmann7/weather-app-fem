@@ -93,7 +93,7 @@ export const HourlyForecastSkeleton = () => {
                 <h3 className="mr-auto">Hourly Forecast</h3>
                 <DropdownSkeleton/>
             </div>
-            <div className="flex flex-col gap-4 h-full px-6 ">
+            <div className="flex flex-col overflow-y-hidden gap-4 h-full px-6">
                 {
                     Array.from({length:24}, (_, i) => (
                         <HourInfoCardSkeleton/>

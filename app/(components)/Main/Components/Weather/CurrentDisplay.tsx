@@ -45,8 +45,8 @@ export default function CurrentDisplay({data}:CurrentDisplayProps){
 export const CurrentDisplaySkeleton = () => {
 
     return(
-        <div className='flex flex-col gap-4'>
-            <div className="flex flex-col items-center justify-center w-85.75 h-72 md:w-199 bg-light-bg rounded-2xl border border-border-color">
+        <div className='max-w-200 flex flex-col csm:flex-row cmd:flex-col gap-6'>
+            <div className="flex flex-col items-center justify-center sm:min-w-85.75 w-85.75 h-72 cmd:w-199 bg-light-bg rounded-2xl border border-border-color">
                 <div className='flex flex-col gap-3'>
                     <Loader className='self-center'/>
                     Loading...

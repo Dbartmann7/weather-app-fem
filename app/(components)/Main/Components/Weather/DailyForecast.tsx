@@ -23,7 +23,7 @@ export const DailyForecastSkeleton = () => {
     return (
         <div>
             <h3 className="font-semibold mb-3">Daily forecast</h3>
-            <div className="grid grid-cols-3 sm:flex gap-4 w-full">
+            <div className="grid grid-cols-3 csm:flex gap-4 w-full">
                 <ForecastCardSkeleton/>
                 <ForecastCardSkeleton/>
                 <ForecastCardSkeleton/>
