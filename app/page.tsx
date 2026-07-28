@@ -1,6 +1,4 @@
 import Main from "./(components)/Main/Main";
-import { getWeatherData } from "./util/getWeatherData";
-import { WeatherData } from "./util/types";
 
 export default async function Page({
   searchParams,

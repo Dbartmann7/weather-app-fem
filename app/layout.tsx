@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import UnitProvider from './util/UnitContext';
 import PageHeader from './(components)/Main/Components/PageHeader/PageHeader';
-import TestFooter from './(components)/Main/Components/TestFooter';
+import DemoFooter from './(components)/Main/Components/DemoFooter';
 
 const dmSans = DM_Sans({
   subsets:["latin"],
@@ -36,7 +36,7 @@ export default async function RootLayout({
         <UnitProvider>  
           <PageHeader/>
           {children}
-          <TestFooter/>
+          <DemoFooter/>
         </UnitProvider>
       </body>
     </html>

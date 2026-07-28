@@ -1,10 +1,9 @@
 
 import { Suspense } from "react";
-import PageHeader from "./Components/PageHeader/PageHeader";
 import Search from "./Components/Search/Search";
 
 import Weather, { WeatherSkeleton } from "./Components/Weather/Weather";
-import { WeatherData, WeatherSearchParams } from "@/app/util/types";
+import {  WeatherSearchParams } from "@/app/util/types";
 
 
 type MainProps = {
