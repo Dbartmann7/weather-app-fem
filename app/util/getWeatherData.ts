@@ -118,7 +118,7 @@ export const getWeatherDataLoadingMock:getWeatherDataFn = async (lat, long, name
 export const getWeatherData:getWeatherDataFn = async (lat, long, name, country) => {
     "use cache"
 
-    cacheLife({revalidate:15*60})
+    cacheLife({revalidate:30*60})
 
     const params = {
         latitude: lat,
