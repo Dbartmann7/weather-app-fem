@@ -24,20 +24,22 @@ export default function UnitProvider({
     }
 
     
-    const [preferences, setPreferences] = useState<UnitPreferences>(defaultPreferences) 
+    const [preferences, setPreferences] = useState<UnitPreferences>(defaultPreferences)
+    const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
     useEffect(() => {
       const preferenceString = localStorage.getItem("unitPreferences")
       
       if(preferenceString) setPreferences(JSON.parse(preferenceString))
-      
+      setIsLoaded(true)
     }, [])
-
+ 
     useEffect(() => {
+      if(!isLoaded) return
       localStorage.setItem("unitPreferences", JSON.stringify(preferences))
     }, [preferences])
     
-     
+     if(!isLoaded) return null
     const value = {
         preferences:preferences,
         setPreferences:setPreferences 
