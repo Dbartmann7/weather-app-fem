@@ -11,7 +11,9 @@
 A responsive weather app developed with Next.js and TypeScript that allows users to search for a location and view the current weather, as well as the forecast for the next week. 
 The design was taken from Frontend Mentor's Weather App challenge: `https://www.frontendmentor.io/challenges/weather-app-K1FhddVm49`
 
-<img src="weather-app-fem/public/images/app_screenshot.png"/>
+<img src="./public/images/app_screenshot.png"/>
+<img src="./public/images/app_screenshot_mobile.png" height="400px"/>
+
 # Technologies
 - Next.js
 - Typescript
@@ -44,18 +46,17 @@ npm run dev
 
 # Data Flow
 This diagram details the data flow from the user entering their desired location up until the weather data is shown
-<img src="weather-app-fem/public/images/DataFlowDiagram.png"/>
+<img src="public/images/DataFlowDiagram.png"/>
+
 - The Weather Display components convert the units to match the user's unit preferences.
 
 
 
 # Technical Decisions
 ### Client and Server Components
-
 - **Decision:** Default to using Server Components and only use Client Components where client-side functionality is needed, such as interactions with the browser or user.
 - **Reasoning:** Client Components require additional JavaScript to be sent to the client, increasing initial load times. By limiting their use to only components that require client-side functionality, I improved the performance of the initial page load, leading to a better experience for users with slow connections. 
 - **Trade Off:** The Server/Client boundary makes moving data around the application require more thought compared to if the whole app was client-side as data cannot be directly passed up from the client to the server. I had to utilize search parameters to send the user's requested location up to the server, React Context to share user preferences between client-side components, and cookies to make the development settings accessible to the server and have them persist between refreshes.
-
 
 ### Caching
 - **Decision:** Reduce API calls and speed up data fetch times by utilizing Next.js Cache Components to cache the weather data of a searched location, with the lifespan of each cache being 30 minutes.
