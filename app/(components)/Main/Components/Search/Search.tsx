@@ -41,8 +41,19 @@ export default function Search(){
         }
     }, [])
 
-    
+useEffect(() => {
+    const timeout = setTimeout(() => {
+        submitLocation()
+    }, 1000)
+
+    return () => clearTimeout(timeout)
+}, [location])
+
     const submitLocation = async () => {
+        if(location.length === 0){
+            setSearchState({status:"IDLE"})
+            return
+        }
         setSearchState({status:"LOADING"})
         const res = await getLocationsData(location)
         if(res.error){
