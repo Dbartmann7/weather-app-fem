@@ -2,7 +2,7 @@ import TempBg from '@/public/images/bg-today-small.svg'
 import TempBgLarge from "@/public/images/bg-today-large.svg"
 import Image from 'next/image'
 import { CurrentWeatherData } from '@/app/util/types'
-import { dateToString } from '@/app/util/DateConversions'
+import { dateToString } from '@/app/util/Conversions/DateConversions'
 import { TempDisplay } from './TempDisplay'
 import { CurrentInfoCards, CurrentInfoCardsSkeleton } from './CurrentInfoCards'
 import { WCtoIcon } from '@/public/images/WeatherCode'

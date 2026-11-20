@@ -3,11 +3,11 @@
 import Image from "next/image"
 
 import { HourlyWeatherData, OptionType } from "@/app/util/types"
-import { dateToDay, dateToHour, getDayNum } from "@/app/util/DateConversions"
+import { dateToDay, dateToHour, getDayNum } from "@/app/util/Conversions/DateConversions"
 import { use, useEffect, useState } from "react"
 import { Dropdown, DropdownSkeleton } from "@/app/util/Components/Dropdown/Dropdown"
 import { UnitContext } from "@/app/util/UnitContext"
-import { temp } from "@/app/util/UnitConversions"
+import { temp } from "@/app/util/Conversions/UnitConversions"
 import { WCtoIcon } from "@/public/images/WeatherCode"
 
 

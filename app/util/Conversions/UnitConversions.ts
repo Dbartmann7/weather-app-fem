@@ -1,6 +1,6 @@
-import { UnitPreferences } from "./types";
+import { UnitPreferences } from "../types";
 
-
+// unit data is given by Open Meteo as metric, so no need to convert from Imprerial to Metric
 
 export const temp = (tempC:number, preferences:UnitPreferences) => {
     const {temp} = preferences

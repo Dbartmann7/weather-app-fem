@@ -2,10 +2,10 @@
 import Image from "next/image"
 import RainIcon from "@/public/images/icon-rain.webp"
 import { DailyWeatherData } from "@/app/util/types"
-import { dateToDay } from "@/app/util/DateConversions"
+import { dateToDay } from "@/app/util/Conversions/DateConversions"
 import { use } from "react"
 import { UnitContext } from "@/app/util/UnitContext"
-import { temp } from "@/app/util/UnitConversions"
+import { temp } from "@/app/util/Conversions/UnitConversions"
 import { WCtoIcon } from "@/public/images/WeatherCode"
 
 

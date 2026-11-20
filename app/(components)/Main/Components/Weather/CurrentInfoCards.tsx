@@ -1,6 +1,6 @@
 "use client"
 
-import { precip, speed, temp } from "@/app/util/UnitConversions"
+import { precip, speed, temp } from "@/app/util/Conversions/UnitConversions"
 import InfoCard, { InfoCardSkeleton } from "./InfoCard"
 import { CurrentWeatherData } from "@/app/util/types"
 import { use } from "react"
